@@ -1,0 +1,38 @@
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+.category {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.category.active {
+  background-color: #555;
+}
+
+.content {
+  flex: 1;
+  background-color: #222;
+  color: white;
+  padding: 20px;
+}
+
+.channel-list {
+  list-style: none;
+  padding: 0;
+}
+
+.channel {
+  padding: 5px 0;
+  border-bottom: 1px solid #444;
+}
