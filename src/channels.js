@@ -18,6 +18,20 @@ const channels = {
       link: "https://example.com/novidades.m3u8",
     },
   ],
+  ANIME: [
+    {
+      id: 601,
+      name: "geek dot.",
+      link: "https://stream.ichibantv.com:3764/hybrid/play.m3u8",
+    },
+    {
+      id: 602,
+      name: "AnimaX",
+      link: "https://stream.ichibantv.com:3547/hybrid/play.m3u8",
+    },
+    { id: 603, name: "Record", link: "https://example.com/record.m3u8" },
+    { id: 604, name: "RedeTV", link: "https://example.com/redetv.m3u8" },
+  ],
 
   UHD: [
     {
@@ -45,12 +59,12 @@ const channels = {
     {
       id: 27,
       name: "CNN ESPANOL",
-      link: "https://example.com/cnnespanol.m3u8",
+      link: "https://stream.ichibantv.com:3764/hybrid/play.m3u8",
     },
     {
       id: 28,
       name: "CNN INTERNATIONAL",
-      link: "https://example.com/cnninternational.m3u8",
+      link: "https://stream.ichibantv.com:3764/hybrid/play.m3u8",
     },
     { id: 35, name: "DIGI 24", link: "https://example.com/digi24.m3u8" },
   ],
@@ -78,8 +92,16 @@ const channels = {
   ],
 
   ABERTOS: [
-    { id: 501, name: "TV Globo", link: "https://example.com/globo.m3u8" },
-    { id: 502, name: "SBT", link: "https://example.com/sbt.m3u8" },
+    {
+      id: 501,
+      name: "TV Globo",
+      link: "https://stream.ichibantv.com:3764/hybrid/play.m3u8",
+    },
+    {
+      id: 502,
+      name: "SBT",
+      link: "https://stream.ichibantv.com:3547/hybrid/play.m3u8",
+    },
     { id: 503, name: "Record", link: "https://example.com/record.m3u8" },
     { id: 504, name: "RedeTV", link: "https://example.com/redetv.m3u8" },
   ],
