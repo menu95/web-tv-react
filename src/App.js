@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
-import channels from "./channels";
+import channels from "./channels"; // seu arquivo de canais
 
 const App = () => {
-  const [selectedCategory, setSelectedCategory] = useState("NOTÍCIAS COVID-19");
+  const [selectedCategory, setSelectedCategory] = useState("ANIME");
   const [selectedChannel, setSelectedChannel] = useState(null);
   const [showCategories, setShowCategories] = useState(true);
   const [showChannels, setShowChannels] = useState(true);
@@ -12,6 +12,7 @@ const App = () => {
     "TODOS",
     "LISTA DE FAVORITOS",
     "TOP & NOVO",
+    "ANIME",
     "UHD",
     "NOTÍCIAS COVID-19",
     "ESPORTE",
@@ -34,27 +35,38 @@ const App = () => {
     setAllChannels(uniqueChannels);
   }, []);
 
-  // Seleciona a categoria
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
     setSelectedChannel(null); // Limpa o canal selecionado ao trocar de categoria
   };
 
-  // Seleciona o canal e carrega o link
   const handleChannelSelect = (channel) => {
     setSelectedChannel(channel);
     setShowCategories(false);
     setShowChannels(false);
   };
 
-  // Esconde as listas após um tempo de inatividade
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowCategories(false);
-      setShowChannels(false);
-    }, 5000); // Esconde após 5 segundos de inatividade
-    return () => clearTimeout(timer);
-  }, []);
+    const video = document.getElementById("video-player");
+
+    if (selectedChannel && selectedChannel.link) {
+      if (window.Hls.isSupported()) {
+        const hls = new window.Hls();
+        hls.loadSource(selectedChannel.link);
+        hls.attachMedia(video);
+      } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        video.src = selectedChannel.link; // Caso suporte nativo HLS
+      }
+    }
+
+    return () => {
+      if (video) {
+        video.pause();
+        video.removeAttribute("src"); // Remove o link do vídeo
+        video.load();
+      }
+    };
+  }, [selectedChannel]);
 
   return (
     <div className="app">
@@ -96,9 +108,7 @@ const App = () => {
 
       {selectedChannel && (
         <div className="player">
-          <h2>{selectedChannel.name}</h2>
-          <video controls autoPlay>
-            <source src={selectedChannel.link} type="application/x-mpegURL" />
+          <video id="video-player" controls autoPlay>
             Seu navegador não suporta o player de vídeo.
           </video>
         </div>
