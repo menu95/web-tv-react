@@ -11,13 +11,14 @@ const App = () => {
   const categories = [
     "TODOS",
     "LISTA DE FAVORITOS",
-    "TOP & NOVO",
     "ANIME",
-    "UHD",
+    "CULTURA",
+    "SÉRIES",
     "NOTÍCIAS COVID-19",
     "ESPORTE",
-    "FILMES & SÉRIES",
+    "FILMES",
     "ABERTOS",
+    "CANAIS DE RADIO",
   ];
 
   const [allChannels, setAllChannels] = useState([]);
