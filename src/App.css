@@ -3,6 +3,7 @@
   position: relative;
   height: 100vh;
   display: flex;
+  background-color: #333;
 }
 
 /* Menu lateral de categorias */
@@ -40,7 +41,7 @@
 .content {
   margin-left: 260px; /* Aumentei a margem esquerda para evitar corte do título */
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #333;
   color: white;
   z-index: 1; /* Z-index menor para que a sidebar fique visível */
   position: relative; /* Para manter o layout responsivo */

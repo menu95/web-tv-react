@@ -173,11 +173,6 @@ const channels = {
     },
     {
       id: 102,
-      name: "SporTV",
-      link: "http://216.230.233.87:80/m3u8/sportv.m3u8",
-    },
-    {
-      id: 102,
       name: "Band Sports",
       link: "https://sportscdn.me/bandsports/index.m3u8",
     },
