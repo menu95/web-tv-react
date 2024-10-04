@@ -1,9 +1,12 @@
+// App.js
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import channels from "./channels"; // seu arquivo de canais
+import channels from "./channels";
+import useKeyboardNavigation from "./useKeyboardNavigation"; // Importa o hook de navegação
 
 const App = () => {
-  const [selectedCategory, setSelectedCategory] = useState("TODOS");
+  const [selectedCategory, setSelectedCategory] = useState(0);
+  const [selectedChannelIndex, setSelectedChannelIndex] = useState(0);
   const [selectedChannel, setSelectedChannel] = useState(null);
   const [showCategories, setShowCategories] = useState(true);
   const [showChannels, setShowChannels] = useState(true);
@@ -36,9 +39,10 @@ const App = () => {
     setAllChannels(uniqueChannels);
   }, []);
 
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
-    setSelectedChannel(null); // Limpa o canal selecionado ao trocar de categoria
+  const handleCategorySelect = (index) => {
+    setSelectedCategory(index);
+    setSelectedChannelIndex(0); // Reseta o canal selecionado quando muda de categoria
+    setSelectedChannel(null); // Limpa o canal selecionado
   };
 
   const handleChannelSelect = (channel) => {
@@ -69,32 +73,32 @@ const App = () => {
     };
   }, [selectedChannel]);
 
-  // Adiciona o atalho para abrir o menu com Enter
-  useEffect(() => {
-    const handleKeyPress = (event) => {
-      if (event.key === "Enter") {
-        setShowCategories(!showCategories);
-        setShowChannels(!showChannels);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyPress);
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [showCategories, showChannels]);
+  // Usa o hook para a navegação por teclado
+  useKeyboardNavigation({
+    selectedCategory,
+    setSelectedCategory,
+    selectedChannelIndex,
+    setSelectedChannelIndex,
+    categories,
+    allChannels,
+    channels,
+    showCategories,
+    setShowCategories,
+    setShowChannels,
+    handleChannelSelect,
+  });
 
   return (
     <div className="app">
       {showCategories && (
         <div className="sidebar">
-          {categories.map((category) => (
+          {categories.map((category, index) => (
             <div
               key={category}
               className={`category ${
-                category === selectedCategory ? "active" : ""
+                index === selectedCategory ? "active" : ""
               }`}
-              onClick={() => handleCategorySelect(category)}
+              onClick={() => handleCategorySelect(index)}
             >
               {category}
             </div>
@@ -102,17 +106,19 @@ const App = () => {
         </div>
       )}
 
-      {showChannels && selectedCategory && (
+      {showChannels && selectedCategory >= 0 && (
         <div className="content">
-          <h2>{selectedCategory}</h2>
+          <h2>{categories[selectedCategory]}</h2>
           <ul className="channel-list">
-            {(selectedCategory === "TODOS"
+            {(selectedCategory === 0
               ? allChannels
-              : channels[selectedCategory]
-            ).map((channel) => (
+              : channels[categories[selectedCategory]]
+            ).map((channel, index) => (
               <li
                 key={channel.id}
-                className="channel"
+                className={`channel ${
+                  index === selectedChannelIndex ? "active" : ""
+                }`}
                 onClick={() => handleChannelSelect(channel)}
               >
                 {channel.id} - {channel.name}

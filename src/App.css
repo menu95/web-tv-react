@@ -19,7 +19,7 @@
   overflow-y: auto; /* Para permitir rolagem na lista */
 }
 
-/* Restaurando hover para a lista de categorias */
+/* Categoria da lista lateral */
 .category {
   padding: 10px;
   cursor: pointer;
@@ -28,6 +28,12 @@
 
 .category:hover {
   background-color: #444;
+}
+
+/* Categoria ativa (selecionada via teclado ou clique) */
+.category.active {
+  background-color: #555;
+  border-left: 5px solid #00ff00; /* Destaque com uma borda verde à esquerda */
 }
 
 /* Conteúdo da lista de canais */
@@ -69,6 +75,12 @@
 
 .channel:hover {
   background-color: #555;
+}
+
+/* Canal ativo (selecionado via teclado ou clique) */
+.channel.active {
+  background-color: #666;
+  border-left: 5px solid #00ff00; /* Destaque com uma borda verde à esquerda */
 }
 
 /* Player de vídeo */
