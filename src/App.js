@@ -3,7 +3,7 @@ import "./App.css";
 import channels from "./channels"; // seu arquivo de canais
 
 const App = () => {
-  const [selectedCategory, setSelectedCategory] = useState("ANIME");
+  const [selectedCategory, setSelectedCategory] = useState("TODOS");
   const [selectedChannel, setSelectedChannel] = useState(null);
   const [showCategories, setShowCategories] = useState(true);
   const [showChannels, setShowChannels] = useState(true);
@@ -68,6 +68,21 @@ const App = () => {
       }
     };
   }, [selectedChannel]);
+
+  // Adiciona o atalho para abrir o menu com Enter
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === "Enter") {
+        setShowCategories(!showCategories);
+        setShowChannels(!showChannels);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [showCategories, showChannels]);
 
   return (
     <div className="app">
