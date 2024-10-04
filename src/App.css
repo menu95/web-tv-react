@@ -1,81 +1,89 @@
+/* Geral */
 .app {
-  display: flex;
+  position: relative;
   height: 100vh;
-  flex-direction: row;
+  display: flex;
 }
 
+/* Menu lateral de categorias */
 .sidebar {
-  width: 200px;
+  width: 250px;
   background-color: #333;
   color: white;
   padding: 10px;
-  overflow-y: auto;
+  z-index: 2; /* Z-index alto para ficar sobre o player */
+  position: fixed; /* Fixado para sobrepor o vídeo */
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow-y: auto; /* Para permitir rolagem na lista */
 }
 
+/* Restaurando hover para a lista de categorias */
 .category {
   padding: 10px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-}
-
-.category.active {
-  background-color: #555;
+  border-bottom: 1px solid #444;
 }
 
 .category:hover {
   background-color: #444;
 }
 
+/* Conteúdo da lista de canais */
 .content {
-  flex: 1;
-  background-color: #222;
+  margin-left: 260px; /* Aumentei a margem esquerda para evitar corte do título */
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 20px;
+  z-index: 1; /* Z-index menor para que a sidebar fique visível */
+  position: relative; /* Para manter o layout responsivo */
+  width: calc(100% - 260px); /* Ocupar o espaço restante */
+  height: 100%;
   overflow-y: auto;
 }
 
+/* Ajustando o título da lista */
+.content h1 {
+  margin: 0;
+  padding: 10px 0;
+  font-size: 24px;
+  text-align: left; /* Para garantir alinhamento correto */
+  white-space: nowrap; /* Previne quebra de linha no título */
+  overflow: hidden; /* Evita o texto sair dos limites */
+  text-overflow: ellipsis; /* Se o título for muito longo, adiciona reticências */
+}
+
+/* Lista de canais */
 .channel-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0; /* Remove qualquer margem indesejada */
 }
 
 .channel {
-  padding: 10px 0;
-  border-bottom: 1px solid #444;
+  padding: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  border-bottom: 1px solid #444;
 }
 
 .channel:hover {
-  background-color: #333;
+  background-color: #555;
 }
 
+/* Player de vídeo */
 .player {
-  width: 100%;
-  max-width: 100%;
-  margin-top: 20px;
-}
-
-.player video {
-  width: 100%;
-  height: auto;
-  max-height: 80vh; /* Define um limite de altura para o vídeo */
-  border: 2px solid #555;
-  border-radius: 5px;
-  background-color: black;
-}
-
-#player-container {
+  position: relative;
+  z-index: 0; /* Z-index menor para garantir que a sidebar e a lista de canais fiquem visíveis */
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.video-player {
+#video-player {
   width: 100%;
-  height: 1000%;
-  display: flex;
-  background-color: black;
-  object-fit: contain; /* Para que o vídeo seja centralizado sem distorção */
+  height: 100%;
+  object-fit: contain;
 }
