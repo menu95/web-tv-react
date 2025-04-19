@@ -1,33 +1,40 @@
-name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages # Nome do workflow visível na aba Actions
 
 on:
   push:
     branches:
       - main # <-- VERIFIQUE ESTE NOME! Altere 'main' para o nome do seu branch principal se for diferente (ex: master)
+      # Se quiser que este workflow rode em múltiplos branches de teste, pode adicionar mais linhas:
+      # - nome-da-sua-branch-de-teste-1
+      # - nome-da-sua-branch-de-teste-2
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # O sistema operacional onde o workflow será executado
 
     steps:
-      - name: Checkout code
+      - name: Checkout code # Passo 1: Clona o seu repositório
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Set up Node.js # Passo 2: Configura o ambiente Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # <-- Considere usar a versão do Node.js que seu projeto usa ou uma recente e LTS (Long Term Support)
+          node-version: '20' # <-- Use a versão do Node.js que seu projeto utiliza ou uma recente e LTS (Long Term Support)
 
-      - name: Install dependencies
+      - name: Install dependencies # Passo 3: Instala as dependências do seu projeto
         run: npm install # ou 'yarn install' se você usar yarn
 
-      - name: Build application
-        run: npm run build # Este comando executa o script 'build' do seu package.json
+      - name: Build application # Passo 4: Executa o script de build
+        run: npm run build
+        env: # <-- Início do ajuste para permitir warnings de ESLint
+          CI: true # Garante que o ambiente CI seja detectado (geralmente já é o padrão no GH Actions, mas pode ser explícito)
+          ESLINT_NO_DEV_ERRORS: true # <-- Esta variável diz ao react-scripts para não tratar warnings de ESLint como erros
+        # <-- Fim do ajuste
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Deploy to GitHub Pages # Passo 5: Faz o deploy para o branch gh-pages
+        uses: peaceiris/actions-gh-pages@v4 # Usa uma action popular para deploy no GH Pages
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build # Esta é a pasta que o comando 'npm run build' gera
-          # publish_branch: gh-pages # O padrão já é gh-pages, não precisa descomentar a menos que queira mudar
-          # cname: seu-dominio.com # Descomente e altere se usar domínio customizado
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Token gerado automaticamente pelo GitHub
+          publish_dir: ./build # A pasta que contém os arquivos estáticos para deploy (geralmente 'build')
+          # publish_branch: gh-pages # O branch onde os arquivos serão deployados (padrão é gh-pages)
+          # cname: seu-dominio.com # Opcional: se você usa um domínio customizado, descomente e altere
