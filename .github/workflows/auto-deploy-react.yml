@@ -1,42 +1,36 @@
-name: Deploy to GitHub Pages (Allow Warnings & Permissions) # Nome do workflow (atualizado para refletir as mudanças)
+name: Deploy to GitHub Pages (Allow Warnings & Permissions)
 
 on:
   push:
     branches:
-      - main # <-- VERIFIQUE ESTE NOME! Altere 'main' para o nome do seu branch principal se for diferente (ex: master)
-      # Se quiser que este workflow rode em múltiplos branches de teste, pode adicionar mais linhas:
-      # - nome-da-sua-branch-de-teste-1
-      # - nome-da-sua-branch-de-teste-2
+      - main
 
-permissions: # <-- NOVO BLOCO: Define as permissões para o GITHUB_TOKEN neste workflow
-  contents: read # Permissão básica para ler o código do repositório
-  pages: write # PERMISSÃO CRUCIAL: Permite que a action escreva no branch gh-pages para o deploy
-  id-token: write # Necessário para autenticação segura no GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest # O sistema operacional onde o workflow será executado
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code # Passo 1: Clona o seu repositório
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js # Passo 2: Configura o ambiente Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # <-- Use a versão do Node.js que seu projeto utiliza ou uma recente e LTS (Long Term Support)
+          node-version: '20'
 
-      - name: Install dependencies # Passo 3: Instala as dependências do seu projeto
-        run: npm install # ou 'yarn install' se você usar yarn
+      - name: Install dependencies
+        run: npm install
 
-      - name: Build application (Ignore ESLint Warnings) # Passo 4: Executa o script de build (com ajuste para warnings)
-        # Definimos CI=true e ESLINT_NO_DEV_ERRORS=true diretamente na linha do comando para permitir warnings
+      - name: Build application (Ignore ESLint Warnings)
         run: CI=true ESLINT_NO_DEV_ERRORS=true npm run build
 
-      - name: Deploy to GitHub Pages # Passo 5: Faz o deploy para o branch gh-pages usando a action
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # O token agora terá as permissões definidas acima
-          publish_dir: ./build # A pasta que contém os arquivos estáticos para deploy
-          # publish_branch: gh-pages # O padrão é gh-pages, não precisa descomentar se for este o caso
-          # cname: seu-dominio.com # Opcional: se você usa um domínio customizado, descomente e altere
+          personal_token: ${{ secrets.GH_TOKEN }} # <-- AQUI USAMOS O TOKEN QUE VOCÊ CRIOU E GUARDOU COMO SEGREDO
+          publish_dir: ./build
