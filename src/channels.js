@@ -157,22 +157,10 @@ const channels = {
       logo: "https://images.pluto.tv/channels/620ff46e0a576e0007dc2f89/colorLogoPNG.png"
     },
     {
-      id: 1,
-      name: "Cine Sucessos",
-      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5f120e94a5714d00074576a1/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
-      logo: "https://images.pluto.tv/channels/5f120e94a5714d00074576a1/colorLogoPNG.png"
-    },
-    {
-      id: 2,
-      name: "Cine Família",
-      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5f171f032cd22e0007f17f3d/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
-      logo: "https://images.pluto.tv/channels/5f171f032cd22e0007f17f3d/colorLogoPNG.png"
-    },
-    {
-      id: 3,
-      name: "Cine Comédia",
-      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5f12101f0b12f00007844c7c/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
-      logo: "https://images.pluto.tv/channels/5f12101f0b12f00007844c7c/colorLogoPNG.png"
+      id: 128,
+      name: "kenan e kel",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5ffcc5130fd98c0007f2e216/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
+      logo: "https://example.com/placeholder.png"
     },
     {
       id: 4,
@@ -181,11 +169,24 @@ const channels = {
       logo: "https://images.pluto.tv/channels/64e501eec630a900088ed0f8/colorLogoPNG.png"
     },
     {
-      id: 5,
-      name: "Cine Comédia Romântica",
-      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/62545ed3dab4380007582f7c/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
-      logo: "https://images.pluto.tv/channels/62545ed3dab4380007582f7c/colorLogoPNG.png"
+      id: 129,
+      name: "macgayver",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/63eb9dc84e83e70008abea92/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
+      logo: "https://example.com/placeholder.png"
     },
+    {
+      id: 112,
+      name: "series criminais",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/6474ab5cdc7a760008745008/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
+      logo: "https://example.com/placeholder.png"
+    },
+    {
+      id: 114,
+      name: "series sci fi",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/63d2ba2f60bc8f0008981a0e/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
+      logo: "https://example.com/placeholder.png"
+    },
+    
   ],
   "NOTÍCIAS": [
     {
@@ -244,8 +245,45 @@ const channels = {
       link: "https://sportscdn.me/bandsports/index.m3u8",
       logo: "https://example.com/placeholder.png"
     },
+    {
+      id: 109,
+      name: "all sports",
+      link: "https://5cf4a2c2512a2.streamlock.net/dgrau/dgrau/chunklist.m3u8",
+      logo: "https://example.com/placeholder.png"
+    },
+    {
+      id: 110,
+      name: "fuel tv",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/6144d088516ea8000739076a/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
+      logo: "https://example.com/placeholder.png"
+    },
   ],
   FILMES: [
+    {
+      id: 1,
+      name: "Cine Sucessos",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5f120e94a5714d00074576a1/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
+      logo: "https://images.pluto.tv/channels/5f120e94a5714d00074576a1/colorLogoPNG.png"
+    },
+    {
+      id: 2,
+      name: "Cine Família",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5f171f032cd22e0007f17f3d/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
+      logo: "https://images.pluto.tv/channels/5f171f032cd22e0007f17f3d/colorLogoPNG.png"
+    },
+    {
+      id: 3,
+      name: "Cine Comédia",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5f12101f0b12f00007844c7c/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
+      logo: "https://images.pluto.tv/channels/5f12101f0b12f00007844c7c/colorLogoPNG.png"
+    },
+  
+    {
+      id: 5,
+      name: "Cine Comédia Romântica",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/62545ed3dab4380007582f7c/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
+      logo: "https://images.pluto.tv/channels/62545ed3dab4380007582f7c/colorLogoPNG.png"
+    },
     {
       id: 201,
       name: "Runtime Ação HD",
@@ -265,11 +303,71 @@ const channels = {
       logo: "https://example.com/placeholder.png"
     },
     {
-      id: 204,
-      name: "Pluto tv cine sucessos",
-      link: "https://r.mjh.nz/PlutoTV/5f120e94a5714d00074576a1-alt.m3u8",
-      logo: "https://images.pluto.tv/channels/5f120e94a5714d00074576a1/colorLogoPNG.png"
+      id: 103,
+      name: "soultv darkflix",
+      link: "https://video01.soultv.com.br/darkflix/darkflix/playlist.m3u8",
+      logo: "https://example.com/placeholder.png"
     },
+    
+  ],
+  DOCUMENTÁRIOS: [
+
+  
+    {
+      id: 104,
+      name: "Ficção cientifica",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5fa15ad6367e170007cdd098/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
+      logo: "https://example.com/placeholder.png"
+    },
+    {
+      id: 126,
+      name: "Negócio fechado",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/64ad7394798def00087b2bfe/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
+      logo: "https://example.com/placeholder.png"
+    },
+    {
+      id: 105,
+      name: "Misterios sem solução",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/62b5c5a064163d0007b2efe6/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
+      logo: "https://example.com/placeholder.png"
+    },
+    {
+      id: 106,
+      name: "Space today tv",
+      link: "https://service.webvideocore.net/CL1olYogIrDWvwqiIKK7eHbBxDyYany25g-L4QOVH5_l5daXY9tfEZPDJS0YHgpW/a_50acwl5q0f0g.m3u8",
+      logo: "https://example.com/placeholder.png"
+    },
+    {
+      id: 121,
+      name: "Acumuladores",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/656e2a4b4261ca00083aa99e/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
+      logo: "https://example.com/placeholder.png"
+    },
+    {
+      id: 122,
+      name: "Caçadores de ovnis",
+      link: "https://cors-anywhere-d1oq.onrender.com/http://stitcher-ipv4.pluto.tv/v1/stitch/embed/hls/channel/656e2a10954b020008ed167c/master.m3u8?deviceType=samsung-tvplus&deviceMake=samsung&deviceModel=samsung&deviceVersion=unknown&appVersion=unknown&deviceLat=0&deviceLon=0&deviceDNT=%7BTARGETOPT%7D&deviceId=%7BPSID%7D&advertisingId=%7BPSID%7D&us_privacy=1YNY&samsung_app_domain=%7BAPP_DOMAIN%7D&samsung_app_name=%7BAPP_NAME%7D&profileLimit=&profileFloor=&embedPartner=samsung-tvplus",
+      logo: "https://example.com/placeholder.png"
+    },
+    {
+      id: 123,
+      name: "Misterios",
+      link: "https://cors-anywhere-d1oq.onrender.com/http://stitcher-ipv4.pluto.tv/v1/stitch/embed/hls/channel/656e2a10954b020008ed167c/master.m3u8?deviceType=samsung-tvplus&deviceMake=samsung&deviceModel=samsung&deviceVersion=unknown&appVersion=unknown&deviceLat=0&deviceLon=0&deviceDNT=%7BTARGETOPT%7D&deviceId=%7BPSID%7D&advertisingId=%7BPSID%7D&us_privacy=1YNY&samsung_app_domain=%7BAPP_DOMAIN%7D&samsung_app_name=%7BAPP_NAME%7D&profileLimit=&profileFloor=&embedPartner=samsung-tvplus",
+      logo: "https://example.com/placeholder.png"
+    },
+    {
+      id: 124,
+      name: "Misterios sem solução",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/62b5c5a064163d0007b2efe6/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
+      logo: "https://example.com/placeholder.png"
+    },
+    {
+      id: 125,
+      name: "Catfish",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/626c2a3502d84a0007cec817/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
+      logo: "https://example.com/placeholder.png"
+    },
+  
   ],
   ABERTOS: [
     {
@@ -390,18 +488,7 @@ const channels = {
       link: "https://player-tvcultura.stream.uol.com.br/live/tvcultura_lsd.m3u8",
       logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Cultura_logo_2013.svg/240px-Cultura_logo_2013.svg.png"
     },
-    {
-      id: 109,
-      name: "all sports",
-      link: "https://5cf4a2c2512a2.streamlock.net/dgrau/dgrau/chunklist.m3u8",
-      logo: "https://example.com/placeholder.png"
-    },
-    {
-      id: 110,
-      name: "fuel tv",
-      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/6144d088516ea8000739076a/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
-      logo: "https://example.com/placeholder.png"
-    },
+   
     {
       id: 111,
       name: "series comedia",
