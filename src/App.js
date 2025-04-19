@@ -8,9 +8,10 @@ const categories = [
   "TODOS",
   "LISTA DE FAVORITOS",
   "ANIME",
+  "DESENHOS",
   "CULTURA",
   "SÉRIES",
-  "NOTÍCIAS COVID-19",
+  "NOTÍCIAS",
   "ESPORTE",
   "FILMES",
   "ABERTOS",
@@ -231,6 +232,7 @@ const App = () => {
                 }}
               >
                 <span className="channel-id">{chan.id}</span>
+                {chan.logo && <img src={chan.logo} alt={`${chan.name} logo`} className="channel-logo" />}
                 <span className="channel-name">{chan.name}</span>
               </li>
             ))}
