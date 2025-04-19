@@ -1,7 +1,22 @@
 // App.js
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import "./App.css";
 import channels from "./channels";
+
+// Constantes de categorias fora do componente para manter identidade estável
+const categories = [
+  "TODOS",
+  "LISTA DE FAVORITOS",
+  "ANIME",
+  "CULTURA",
+  "SÉRIES",
+  "NOTÍCIAS COVID-19",
+  "ESPORTE",
+  "FILMES",
+  "ABERTOS",
+  "CANAIS DE RÁDIO",
+  "ADICIONADOS RECENTEMENTE"
+];
 
 const App = () => {
   const [selectedCategory, setSelectedCategory] = useState(0);
@@ -10,25 +25,8 @@ const App = () => {
   const [showCategories, setShowCategories] = useState(true);
   const [showChannels, setShowChannels] = useState(true);
   const [activeMenu, setActiveMenu] = useState('categories');
-  const [userActive, setUserActive] = useState(true);
-  
-  // Referência para o timer de inatividade
+
   const inactivityTimerRef = useRef(null);
-
-  const categories = [
-    "TODOS",
-    "LISTA DE FAVORITOS",
-    "ANIME",
-    "CULTURA",
-    "SÉRIES",
-    "NOTÍCIAS COVID-19",
-    "ESPORTE",
-    "FILMES",
-    "ABERTOS",
-    "CANAIS DE RÁDIO",
-    "ADICIONADOS RECENTEMENTE"
-  ];
-
   const [allChannels, setAllChannels] = useState([]);
 
   // Preenche TODOS sem repetição
@@ -42,60 +40,39 @@ const App = () => {
     setAllChannels(unique);
   }, []);
 
-  // Função para resetar o timer de inatividade
-  const resetInactivityTimer = () => {
+  // Função para resetar o timer de inatividade (memoizada)
+  const resetInactivityTimer = useCallback(() => {
     if (inactivityTimerRef.current) {
       clearTimeout(inactivityTimerRef.current);
     }
-    
-    setUserActive(true);
-    
-    // Configura novo timer para 5 segundos
     inactivityTimerRef.current = setTimeout(() => {
-      // Só oculta os menus se um canal estiver selecionado
       if (selectedChannel) {
         setShowCategories(false);
         setShowChannels(false);
-        setUserActive(false);
       }
     }, 5000);
-  };
+  }, [selectedChannel]);
 
   // Monitora atividade do usuário
   useEffect(() => {
-    // Registra eventos de atividade do usuário
     const activityEvents = ['keydown', 'mousemove', 'mousedown', 'click'];
-    
-    const handleUserActivity = () => {
-      resetInactivityTimer();
-    };
-    
-    // Adiciona os event listeners
-    activityEvents.forEach(event => {
-      window.addEventListener(event, handleUserActivity);
-    });
-    
-    // Configura o timer inicial
+    const handleUserActivity = () => { resetInactivityTimer(); };
+
+    activityEvents.forEach(event => window.addEventListener(event, handleUserActivity));
     resetInactivityTimer();
-    
-    // Limpeza ao desmontar
+
     return () => {
-      activityEvents.forEach(event => {
-        window.removeEventListener(event, handleUserActivity);
-      });
-      
-      if (inactivityTimerRef.current) {
-        clearTimeout(inactivityTimerRef.current);
-      }
+      activityEvents.forEach(event => window.removeEventListener(event, handleUserActivity));
+      if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
     };
-  }, [selectedChannel]); // Adiciona dependência para que o timer só seja ativo quando um canal for selecionado
+  }, [resetInactivityTimer]);
 
   const handleCategorySelect = (idx) => {
     setSelectedCategory(idx);
     setSelectedChannelIndex(null);
     setSelectedChannel(null);
-    setShowChannels(true);
     setShowCategories(true);
+    setShowChannels(true);
     setActiveMenu('categories');
     resetInactivityTimer();
   };
@@ -107,7 +84,6 @@ const App = () => {
     resetInactivityTimer();
   };
 
-  // Mostrar menus novamente
   const showMenus = () => {
     setShowCategories(true);
     setShowChannels(true);
@@ -136,80 +112,69 @@ const App = () => {
     };
   }, [selectedChannel]);
 
-  // Custom keyboard hook implementation
-  const handleKeyDown = (e) => {
+  // Hook de teclado (memoizado)
+  const handleKeyDown = useCallback((e) => {
     resetInactivityTimer();
-    
-    const channelsForCategory = selectedCategory === 0 ? allChannels : channels[categories[selectedCategory]] || [];
-    
-    // Se estiver assistindo um vídeo (menus ocultos) e pressionar Enter ou Escape
+    const channelsForCategory =
+      selectedCategory === 0 ? allChannels : channels[categories[selectedCategory]] || [];
+
+    // Se menus ocultos
     if (!showCategories && !showChannels) {
       if (e.key === 'Enter' || e.key === 'Escape') {
         e.preventDefault();
         showMenus();
-        return;
       }
-      return; // Ignora outras teclas quando estiver assistindo vídeo
+      return;
     }
-    
+
     switch (e.key) {
       case 'ArrowUp':
         if (activeMenu === 'categories') {
           setSelectedCategory(prev => Math.max(0, prev - 1));
-        } else if (activeMenu === 'channels') {
+        } else {
           setSelectedChannelIndex(prev => Math.max(0, prev - 1));
         }
         break;
-      
       case 'ArrowDown':
         if (activeMenu === 'categories') {
           setSelectedCategory(prev => Math.min(categories.length - 1, prev + 1));
-        } else if (activeMenu === 'channels') {
+        } else {
           setSelectedChannelIndex(prev => Math.min(channelsForCategory.length - 1, prev + 1));
         }
         break;
-      
       case 'ArrowRight':
         if (activeMenu === 'categories' && channelsForCategory.length > 0) {
           setActiveMenu('channels');
           setSelectedChannelIndex(0);
         }
         break;
-      
       case 'ArrowLeft':
         if (activeMenu === 'channels') {
           setActiveMenu('categories');
           setSelectedChannelIndex(null);
         }
         break;
-      
       case 'Enter':
         if (activeMenu === 'channels' && selectedChannelIndex !== null) {
           handleChannelSelect(channelsForCategory[selectedChannelIndex]);
         }
         break;
-      
       case 'Escape':
         if (selectedChannel) {
-          // Se tiver um canal selecionado, para de reproduzir
           setSelectedChannel(null);
         }
         break;
-      
       default:
         break;
     }
-  };
+  }, [resetInactivityTimer, selectedCategory, allChannels, activeMenu, selectedChannelIndex, showCategories, showChannels, selectedChannel]);
 
-  // Add keyboard event listener
+  // Registra listener de teclado
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [selectedCategory, selectedChannelIndex, activeMenu, showCategories, showChannels, selectedChannel]);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
 
-  // --- AQUI FAZEMOS O FALBACK caso channels[...] seja undefined ---
   const channelsForCategory =
     selectedCategory === 0
       ? allChannels
@@ -217,8 +182,7 @@ const App = () => {
 
   return (
     <div className="app" onMouseMove={resetInactivityTimer}>
-      {(showCategories || showChannels) && <div className="overlay" />}
-
+      {(showCategories || showChannels) && <div className="overlay" />}      
       {showCategories && (
         <nav className="sidebar">
           {categories.map((cat, i) => (
