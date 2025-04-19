@@ -53,6 +53,32 @@ const App = () => {
     }, 5000);
   }, [selectedChannel]);
 
+  // Mostrar menus novamente (memoizado)
+  const showMenus = useCallback(() => {
+    setShowCategories(true);
+    setShowChannels(true);
+    setActiveMenu('categories');
+    resetInactivityTimer();
+  }, [resetInactivityTimer]);
+
+  // Funções de seleção memoizadas para usar em callbacks
+  const handleCategorySelect = useCallback((idx) => {
+    setSelectedCategory(idx);
+    setSelectedChannelIndex(null);
+    setSelectedChannel(null);
+    setShowCategories(true);
+    setShowChannels(true);
+    setActiveMenu('categories');
+    resetInactivityTimer();
+  }, [resetInactivityTimer]);
+
+  const handleChannelSelect = useCallback((channel) => {
+    setSelectedChannel(channel);
+    setShowCategories(false);
+    setShowChannels(false);
+    resetInactivityTimer();
+  }, [resetInactivityTimer]);
+
   // Monitora atividade do usuário
   useEffect(() => {
     const activityEvents = ['keydown', 'mousemove', 'mousedown', 'click'];
@@ -66,30 +92,6 @@ const App = () => {
       if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
     };
   }, [resetInactivityTimer]);
-
-  const handleCategorySelect = (idx) => {
-    setSelectedCategory(idx);
-    setSelectedChannelIndex(null);
-    setSelectedChannel(null);
-    setShowCategories(true);
-    setShowChannels(true);
-    setActiveMenu('categories');
-    resetInactivityTimer();
-  };
-
-  const handleChannelSelect = (channel) => {
-    setSelectedChannel(channel);
-    setShowCategories(false);
-    setShowChannels(false);
-    resetInactivityTimer();
-  };
-
-  const showMenus = () => {
-    setShowCategories(true);
-    setShowChannels(true);
-    setActiveMenu('categories');
-    resetInactivityTimer();
-  };
 
   // Carrega HLS no vídeo
   useEffect(() => {
@@ -116,7 +118,9 @@ const App = () => {
   const handleKeyDown = useCallback((e) => {
     resetInactivityTimer();
     const channelsForCategory =
-      selectedCategory === 0 ? allChannels : channels[categories[selectedCategory]] || [];
+      selectedCategory === 0
+        ? allChannels
+        : channels[categories[selectedCategory]] || [];
 
     // Se menus ocultos
     if (!showCategories && !showChannels) {
@@ -131,14 +135,14 @@ const App = () => {
       case 'ArrowUp':
         if (activeMenu === 'categories') {
           setSelectedCategory(prev => Math.max(0, prev - 1));
-        } else {
+        } else if (activeMenu === 'channels') {
           setSelectedChannelIndex(prev => Math.max(0, prev - 1));
         }
         break;
       case 'ArrowDown':
         if (activeMenu === 'categories') {
           setSelectedCategory(prev => Math.min(categories.length - 1, prev + 1));
-        } else {
+        } else if (activeMenu === 'channels') {
           setSelectedChannelIndex(prev => Math.min(channelsForCategory.length - 1, prev + 1));
         }
         break;
@@ -167,7 +171,18 @@ const App = () => {
       default:
         break;
     }
-  }, [resetInactivityTimer, selectedCategory, allChannels, activeMenu, selectedChannelIndex, showCategories, showChannels, selectedChannel]);
+  }, [
+    resetInactivityTimer,
+    selectedCategory,
+    allChannels,
+    showCategories,
+    showChannels,
+    activeMenu,
+    selectedChannelIndex,
+    selectedChannel,
+    showMenus,
+    handleChannelSelect
+  ]);
 
   // Registra listener de teclado
   useEffect(() => {
