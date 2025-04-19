@@ -1,0 +1,33 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # <-- VERIFIQUE ESTE NOME! Altere 'main' para o nome do seu branch principal se for diferente (ex: master)
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # <-- Considere usar a versão do Node.js que seu projeto usa ou uma recente e LTS (Long Term Support)
+
+      - name: Install dependencies
+        run: npm install # ou 'yarn install' se você usar yarn
+
+      - name: Build application
+        run: npm run build # Este comando executa o script 'build' do seu package.json
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build # Esta é a pasta que o comando 'npm run build' gera
+          # publish_branch: gh-pages # O padrão já é gh-pages, não precisa descomentar a menos que queira mudar
+          # cname: seu-dominio.com # Descomente e altere se usar domínio customizado
