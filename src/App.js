@@ -14,6 +14,7 @@ const categories = [
   "NOTÍCIAS",
   "ESPORTE",
   "FILMES",
+  "DOCUMENTÁRIOS",
   "ABERTOS",
   "CANAIS DE RÁDIO",
   "ADICIONADOS RECENTEMENTE"
@@ -26,6 +27,7 @@ const App = () => {
   const [showCategories, setShowCategories] = useState(true);
   const [showChannels, setShowChannels] = useState(true);
   const [activeMenu, setActiveMenu] = useState('categories');
+  const videoRef = useRef(null);
 
   const inactivityTimerRef = useRef(null);
   const [allChannels, setAllChannels] = useState([]);
@@ -96,16 +98,30 @@ const App = () => {
 
   // Carrega HLS no vídeo
   useEffect(() => {
-    const video = document.getElementById("video-player");
-    if (selectedChannel?.link) {
+    const video = videoRef.current;
+    
+    if (selectedChannel?.link && video) {
+      // Garante que controles nativos estão desativados
+      video.controls = false;
+      
+      // Configura atributos adicionais para evitar controles
+      video.controlsList = "nodownload nofullscreen noremoteplayback";
+      video.disablePictureInPicture = true;
+      video.disableRemotePlayback = true;
+      
       if (window.Hls?.isSupported()) {
         const hls = new window.Hls();
         hls.loadSource(selectedChannel.link);
         hls.attachMedia(video);
+        hls.on(window.Hls.Events.MANIFEST_PARSED, () => {
+          video.play().catch(err => console.log("Erro ao iniciar reprodução:", err));
+        });
       } else {
         video.src = selectedChannel.link;
+        video.play().catch(err => console.log("Erro ao iniciar reprodução:", err));
       }
     }
+    
     return () => {
       if (video) {
         video.pause();
@@ -114,6 +130,14 @@ const App = () => {
       }
     };
   }, [selectedChannel]);
+
+  // Desativar controles quando o mouse se movimenta sobre o vídeo
+  const handleMouseMove = useCallback(() => {
+    resetInactivityTimer();
+    if (videoRef.current) {
+      videoRef.current.controls = false;
+    }
+  }, [resetInactivityTimer]);
 
   // Hook de teclado (memoizado)
   const handleKeyDown = useCallback((e) => {
@@ -191,13 +215,29 @@ const App = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleKeyDown]);
 
+  // Desabilita controles de vídeo usando JavaScript
+  useEffect(() => {
+    // Impedir que o navegador mostrar controles ao passar mouse
+    const preventControls = (e) => {
+      if (videoRef.current) {
+        videoRef.current.controls = false;
+      }
+    };
+    
+    document.addEventListener('mousemove', preventControls);
+    
+    return () => {
+      document.removeEventListener('mousemove', preventControls);
+    };
+  }, []);
+
   const channelsForCategory =
     selectedCategory === 0
       ? allChannels
       : channels[categories[selectedCategory]] || [];
 
   return (
-    <div className="app" onMouseMove={resetInactivityTimer}>
+    <div className="app" onMouseMove={handleMouseMove}>
       {(showCategories || showChannels) && <div className="overlay" />}      
       {showCategories && (
         <nav className="sidebar">
@@ -242,7 +282,16 @@ const App = () => {
 
       {selectedChannel && (
         <div className="player" onClick={showMenus}>
-          <video id="video-player" controls autoPlay />
+          <video 
+            ref={videoRef}
+            id="video-player" 
+            autoPlay
+            muted={false}
+            playsInline
+            disablePictureInPicture
+            controlsList="nodownload nofullscreen noremoteplayback"
+            className="no-controls"
+          />
         </div>
       )}
     </div>
