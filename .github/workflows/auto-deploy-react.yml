@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages (Allow Warnings) # Nome do workflow visível na aba Actions (adicionei "(Allow Warnings)" para diferenciar)
+name: Deploy to GitHub Pages (Allow Warnings & Permissions) # Nome do workflow (atualizado para refletir as mudanças)
 
 on:
   push:
@@ -7,6 +7,11 @@ on:
       # Se quiser que este workflow rode em múltiplos branches de teste, pode adicionar mais linhas:
       # - nome-da-sua-branch-de-teste-1
       # - nome-da-sua-branch-de-teste-2
+
+permissions: # <-- NOVO BLOCO: Define as permissões para o GITHUB_TOKEN neste workflow
+  contents: read # Permissão básica para ler o código do repositório
+  pages: write # PERMISSÃO CRUCIAL: Permite que a action escreva no branch gh-pages para o deploy
+  id-token: write # Necessário para autenticação segura no GitHub Pages
 
 jobs:
   build-and-deploy:
@@ -24,18 +29,14 @@ jobs:
       - name: Install dependencies # Passo 3: Instala as dependências do seu projeto
         run: npm install # ou 'yarn install' se você usar yarn
 
-      - name: Build application (Ignore ESLint Warnings) # Passo 4: Executa o script de build (modificado)
-        # Definimos CI=true e ESLINT_NO_DEV_ERRORS=true diretamente na linha do comando
+      - name: Build application (Ignore ESLint Warnings) # Passo 4: Executa o script de build (com ajuste para warnings)
+        # Definimos CI=true e ESLINT_NO_DEV_ERRORS=true diretamente na linha do comando para permitir warnings
         run: CI=true ESLINT_NO_DEV_ERRORS=true npm run build
-        # A seção 'env:' abaixo não é necessária com o método acima
-        # env:
-        #   CI: true
-        #   ESLINT_NO_DEV_ERRORS: true
 
-      - name: Deploy to GitHub Pages # Passo 5: Faz o deploy para o branch gh-pages
-        uses: peaceiris/actions-gh-pages@v4 # Usa uma action popular para deploy no GH Pages
+      - name: Deploy to GitHub Pages # Passo 5: Faz o deploy para o branch gh-pages usando a action
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # Token gerado automaticamente pelo GitHub
-          publish_dir: ./build # A pasta que contém os arquivos estáticos para deploy (geralmente 'build')
-          # publish_branch: gh-pages # O padrão já é gh-pages, não precisa descomentar a menos que queira mudar
+          github_token: ${{ secrets.GITHUB_TOKEN }} # O token agora terá as permissões definidas acima
+          publish_dir: ./build # A pasta que contém os arquivos estáticos para deploy
+          # publish_branch: gh-pages # O padrão é gh-pages, não precisa descomentar se for este o caso
           # cname: seu-dominio.com # Opcional: se você usa um domínio customizado, descomente e altere
