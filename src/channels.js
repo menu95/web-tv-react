@@ -24,6 +24,18 @@ const channels = {
       link: "https://5c483b9d1019c.streamlock.net/8054/8054/playlist.m3u8",
       logo: "https://statics.otvfoco.com.br/2015/06/TV-escola1.png"
     },
+    {
+      id: 29,
+      name: "TV Brasil",
+      link: "http://streaming.procergs.com.br:1935/tve/stve/playlist.m3u8",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/TV_Brasil_logo_2019.svg"
+    },
+    {
+      id: 290,
+      name: "Retro Tv",
+      link: "http://stream.mediawork.cz/retrotv//retrotvHQ1/playlist.m3u8",
+      logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-l/7c8320451943ed08265872510644e800.webp"
+    },
   ],
   ANIME: [
     {
@@ -48,7 +60,7 @@ const channels = {
       id: 29,
       name: "WORDING TV",
       link: "https://tv02.zas.media:1936/wordingtv/wordingtv/chunklist_w1264551258.m3u8",
-      logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBfNhFCe10yXMMd7vF6PhWxhG-SNXO2yLoZIeZrtGzlLa177dOBMZuWGJOMlVfWZuzkHS-ChymHFFabHKQwvq5cwLOZ3jkrkVqj8sV8hsbXYhbaCSKbCVqHsN1AcBiKAyJXOiPNkP3ae4kRZkuUymJwRuPLw6b7VuBq75fdCRNjSi8U7PRab7nNjySPDo/w200-h100/WORDING%20TV.webp"
+      logo: "https://play-lh.googleusercontent.com/fvJuM-bjJiCcItUjedG-eGDRdF0qrjJabAhgp3ag8fcB1Kpmfai6DjTOiCu6_9DNTA=w240-h480-rw"
     },
     {
       id: 31,
@@ -57,22 +69,22 @@ const channels = {
       logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjpSDumzlxKREPdG7me7Aj2q6-Bms3dLL-oZRRYDFQvNfW5fONEsm7dkN8lB-GNzDTNYYyRitOb6t5YyAUqQdUDd5oqnenOvq8ZkhPsd6qzf21RC2r__4NqUyQspI7U3i3v462JIsgAa9nZUeeacR3VnZgTPM_Dh6MdhuUDCkOt8NBzwGoPDnFtS5KSYvo/w200-h100/ANIME%20TV.webp"
     },
     {
+      id: 101,
+      name: "Anime e Tokusatsu",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/604b79c558393100078faeef/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
+      logo: "https://w7.pngwing.com/pngs/33/470/png-transparent-tokusatsu-drawing-ninja-cartoon-art-super-sentai.png"
+    },
+    {
       id: 3,
       name: "One Piece",
       link: "https://cors-anywhere-d1oq.onrender.com/http://stitcher-ipv4.pluto.tv/v1/stitch/embed/hls/channel/624b1c8d4321e200073ee421/master.m3u8?deviceType=samsung-tvplus&deviceMake=samsung&deviceModel=samsung&deviceVersion=unknown&appVersion=unknown&deviceLat=0&deviceLon=0&deviceDNT=%7BTARGETOPT%7D&deviceId=%7BPSID%7D&advertisingId=%7BPSID%7D&us_privacy=1YNY&samsung_app_domain=%7BAPP_DOMAIN%7D&samsung_app_name=%7BAPP_NAME%7D&profileLimit=&profileFloor=&embedPartner=samsung-tvplus",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://i.pinimg.com/736x/81/b8/1b/81b81b38c72e148ce4ddfcae172733f0.jpg"
     },
     {
       id: 4,
       name: "Naruto",
       link: "https://cors-anywhere-d1oq.onrender.com/http://stitcher-ipv4.pluto.tv/v1/stitch/embed/hls/channel/5f6df5a173d7340007c559f7/master.m3u8?deviceType=samsung-tvplus&deviceMake=samsung&deviceModel=samsung&deviceVersion=unknown&appVersion=unknown&deviceLat=0&deviceLon=0&deviceDNT=%7BTARGETOPT%7D&deviceId=%7BPSID%7D&advertisingId=%7BPSID%7D&us_privacy=1YNY&samsung_app_domain=%7BAPP_DOMAIN%7D&samsung_app_name=%7BAPP_NAME%7D&profileLimit=&profileFloor=&embedPartner=samsung-tvplus",
-      logo: "https://example.com/placeholder.png"
-    },
-    {
-      id: 5,
-      name: "Naruto Shippuden",
-      link: "https://cors-anywhere-d1oq.onrender.com/http://stitcher-ipv4.pluto.tv/v1/stitch/embed/hls/channel/64c92f965580090008084968/master.m3u8?deviceType=samsung-tvplus&deviceMake=samsung&deviceModel=samsung&deviceVersion=unknown&appVersion=unknown&deviceLat=0&deviceLon=0&deviceDNT=%7BTARGETOPT%7D&deviceId=%7BPSID%7D&advertisingId=%7BPSID%7D&us_privacy=1YNY&samsung_app_domain=%7BAPP_DOMAIN%7D&samsung_app_name=%7BAPP_NAME%7D&profileLimit=&profileFloor=&embedPartner=samsung-tvplus",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://i.pinimg.com/736x/5f/60/34/5f60349f6b0980548907a7a81a8f3aed.jpg"
     },
     {
       id: 9,
@@ -110,7 +122,7 @@ const channels = {
       id: 29,
       name: "WORDING TV",
       link: "https://tv02.zas.media:1936/wordingtv/wordingtv/chunklist_w1264551258.m3u8",
-      logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBfNhFCe10yXMMd7vF6PhWxhG-SNXO2yLoZIeZrtGzlLa177dOBMZuWGJOMlVfWZuzkHS-ChymHFFabHKQwvq5cwLOZ3jkrkVqj8sV8hsbXYhbaCSKbCVqHsN1AcBiKAyJXOiPNkP3ae4kRZkuUymJwRuPLw6b7VuBq75fdCRNjSi8U7PRab7nNjySPDo/w200-h100/WORDING%20TV.webp"
+      logo: "https://play-lh.googleusercontent.com/fvJuM-bjJiCcItUjedG-eGDRdF0qrjJabAhgp3ag8fcB1Kpmfai6DjTOiCu6_9DNTA=w240-h480-rw"
     },
     {
       id: 401,
@@ -201,6 +213,12 @@ const channels = {
       link: "https://d25usgadhphvwi.cloudfront.net/hls/main.m3u8",
       logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg5PspLuS1V8Q2fEsHLKXteg402IGXUqD3eQ&s"
     },
+    {
+      id: 29,
+      name: "Record news",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://5cf4a2c2512a2.streamlock.net/8016/8016/chunklist_w1121778449.m3u8",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/7/76/Record_News_logo_2022.svg"
+    },
   ],
   ESPORTE: [
     {
@@ -237,9 +255,9 @@ const channels = {
     },
     {
       id: 2,
-      name: "Cine Família",
-      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5f171f032cd22e0007f17f3d/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
-      logo: "https://images.pluto.tv/channels/5f171f032cd22e0007f17f3d/colorLogoPNG.png"
+      name: "Extreme",
+      link: "https://stmv1.srvif.com/xtremetv/xtremetv/playlist.m3u8",
+      logo: "https://t3.ftcdn.net/jpg/01/01/95/04/360_F_101950431_ofa3YsAmc4Nw85q4laiTJxsSnqdjYexC.jpg"
     },
     {
       id: 3,
@@ -258,25 +276,25 @@ const channels = {
       id: 201,
       name: "Runtime Ação HD",
       link: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=2552",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://images.samsung.com/is/image/samsung/assets/br/tvs/smart-tv/channel-list/RuntimeAcao_b_1000x1000_circle.png?$ORIGIN_PNG$"
     },
     {
       id: 202,
       name: "Runtime Comédia",
       link: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=2553",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-l/d8e9cfe9b910731a2ba29ede0a63cacd.webp"
     },
     {
       id: 203,
       name: "Runtime investigação",
       link: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=4864",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://www.cxtv.com.br/img/Tvs/Logo/webp-l/ae540b891b4a0d073b39ae0bb693f5c3.webp"
     },
     {
       id: 103,
-      name: "soultv darkflix",
+      name: "Soultv darkflix",
       link: "https://video01.soultv.com.br/darkflix/darkflix/playlist.m3u8",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://t.ctcdn.com.br/QmtiW8SWjm0OE823LBJ4NxF2dEU=/1200x675/smart/i477075.jpeg"
     },
     
   ],
@@ -299,7 +317,7 @@ const channels = {
       id: 105,
       name: "Misterios sem solução",
       link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/62b5c5a064163d0007b2efe6/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFwREj4eOU7Ti6R2GAFiRdtsjxALPRuC9Emg&s"
     },
     {
       id: 106,
