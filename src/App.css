@@ -50,10 +50,6 @@ body, .app {
   transition: background 0.2s;
 }
 
-.category:hover {
-  background: rgba(255,255,255,0.1);
-}
-
 .category.active {
   background: var(--highlight-color);
   border-left: 4px solid #fff;
@@ -97,9 +93,7 @@ body, .app {
   transition: background 0.2s;
 }
 
-.channel:hover {
-  background: rgba(255,255,255,0.1);
-}
+
 
 .channel.active {
   background: var(--highlight-color);
