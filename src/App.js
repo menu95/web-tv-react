@@ -53,7 +53,7 @@ const App = () => {
         setShowCategories(false);
         setShowChannels(false);
       }
-    }, 2000);
+    }, 5000);
   }, [selectedChannel]);
 
   // Mostrar menus novamente (memoizado)
