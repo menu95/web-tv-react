@@ -306,3 +306,16 @@ video:hover {
 .player {
   pointer-events: auto;
 }
+
+/* Tentar remover qualquer outline padrão do navegador */
+*:focus {
+  outline: none !important;
+  box-shadow: none !important; /* Adicionar por precaução */
+}
+
+/* Ou especificamente para seus itens clicáveis */
+.category:focus,
+.channel:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
