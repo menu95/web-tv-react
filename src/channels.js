@@ -13,28 +13,16 @@ const channels = {
       logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Cultura_logo_2013.svg/240px-Cultura_logo_2013.svg.png"
     },
     {
-      id: 302,
-      name: "Top Hits",
-      link: "https://example.com/top_hits.m3u8",
-      logo: "https://example.com/placeholder.png"
-    },
-    {
-      id: 303,
-      name: "Novidades da Semana",
-      link: "https://example.com/novidades.m3u8",
-      logo: "https://example.com/placeholder.png"
-    },
-    {
       id: 127,
       name: "viagens",
       link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5f32d432d612e50007e56133/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://i.pinimg.com/736x/77/da/ed/77daed8daff67ab9e074e75eada1934e.jpg"
     },
     {
       id: 108,
       name: "tv escola",
       link: "https://5c483b9d1019c.streamlock.net/8054/8054/playlist.m3u8",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://statics.otvfoco.com.br/2015/06/TV-escola1.png"
     },
   ],
   ANIME: [
@@ -48,25 +36,25 @@ const channels = {
       id: 602,
       name: "AnimaX",
       link: "https://stream.ichibantv.com:3547/hybrid/play.m3u8",
-      logo: "https://imgur.com/BatygW5.png"
+      logo: "https://indiantelevision.com/sites/default/files/styles/smartcrop_800x800/public/images/tv-images/2016/07/08/Untitled-1_11.jpg?itok=G9CLuAX7"
     },
     {
       id: 26,
       name: "Otaku Sign TV",
       link: "https://stmv1.srvif.com/otaku/otaku/playlist.m3u8",
-      logo: "otakusign.webp"
+      logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWzsaBbPTqt4Y65Q5dWlHOkqeTjU7YEbHGOSMzQVUqCxyFC9xHUo-7ZVK6Tzd1Ea_uDuF_cNEd94yD2t3MRv2XG9nHjqZ_OUy8O21z0h2gn83tfI1SMXb7lmYGgPF-NejpcZWOmlBqIT1nszsVfuTmNd5Gwm_AMGob8wIUDWsv7HvLgbNeKnjpzJRbzmc/w200-h100/OTAKU%20SIGN%20TV.webp"
     },
     {
       id: 29,
       name: "WORDING TV",
       link: "https://tv02.zas.media:1936/wordingtv/wordingtv/chunklist_w1264551258.m3u8",
-      logo: "wordingtv.webp"
+      logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBfNhFCe10yXMMd7vF6PhWxhG-SNXO2yLoZIeZrtGzlLa177dOBMZuWGJOMlVfWZuzkHS-ChymHFFabHKQwvq5cwLOZ3jkrkVqj8sV8hsbXYhbaCSKbCVqHsN1AcBiKAyJXOiPNkP3ae4kRZkuUymJwRuPLw6b7VuBq75fdCRNjSi8U7PRab7nNjySPDo/w200-h100/WORDING%20TV.webp"
     },
     {
       id: 31,
       name: "Animes TV",
       link: "https://stmv1.srvif.com/animetv/animetv/playlist.m3u8?ManoTV",
-      logo: "https://imgur.com/K4IrU99.png"
+      logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjpSDumzlxKREPdG7me7Aj2q6-Bms3dLL-oZRRYDFQvNfW5fONEsm7dkN8lB-GNzDTNYYyRitOb6t5YyAUqQdUDd5oqnenOvq8ZkhPsd6qzf21RC2r__4NqUyQspI7U3i3v462JIsgAa9nZUeeacR3VnZgTPM_Dh6MdhuUDCkOt8NBzwGoPDnFtS5KSYvo/w200-h100/ANIME%20TV.webp"
     },
     {
       id: 3,
@@ -110,7 +98,7 @@ const channels = {
       id: 27,
       name: "Loading...TV HD",
       link: "https://stmv1.srvif.com/loadingtv/loadingtv/playlist.m3u8",
-      logo: "[Base64 Image]" // Imagem em Base64, sem URL direta
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQN8-DtUJ-9pOvnxuoDYmFOhs-7RKJtzLwQGg&s" 
     },
     {
       id: 110,
@@ -122,13 +110,13 @@ const channels = {
       id: 29,
       name: "WORDING TV",
       link: "https://tv02.zas.media:1936/wordingtv/wordingtv/chunklist_w1264551258.m3u8",
-      logo: "wordingtv.webp"
+      logo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBfNhFCe10yXMMd7vF6PhWxhG-SNXO2yLoZIeZrtGzlLa177dOBMZuWGJOMlVfWZuzkHS-ChymHFFabHKQwvq5cwLOZ3jkrkVqj8sV8hsbXYhbaCSKbCVqHsN1AcBiKAyJXOiPNkP3ae4kRZkuUymJwRuPLw6b7VuBq75fdCRNjSi8U7PRab7nNjySPDo/w200-h100/WORDING%20TV.webp"
     },
     {
       id: 401,
       name: "Nick Clássicos",
       link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5f12151794c1800007a8ae63/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
-      logo: "nickclassico.jpeg"
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS58QoW1lwg5B5_xnkmwyVV7VlZH5iHCrQ3IQ&s"
     },
     {
       id: 402,
@@ -154,82 +142,64 @@ const channels = {
       id: 38,
       name: "Icarly",
       link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/620ff46e0a576e0007dc2f89/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
-      logo: "https://images.pluto.tv/channels/620ff46e0a576e0007dc2f89/colorLogoPNG.png"
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEFNWW-pUGWSwIfwBgNeAyq26RB4cWgDCElQ&s"
     },
     {
       id: 128,
       name: "kenan e kel",
       link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5ffcc5130fd98c0007f2e216/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg6JkfblhUxc0IqhSiK_3QvrrtXpSmTxJu6A&s"
     },
     {
       id: 4,
       name: "Clube do Terror",
       link: "https://cors-anywhere-d1oq.onrender.com/http://stitcher-ipv4.pluto.tv/v1/stitch/embed/hls/channel/64e501eec630a900088ed0f8/master.m3u8?deviceType=samsung-tvplus&deviceMake=samsung&deviceModel=samsung&deviceVersion=unknown&appVersion=unknown&deviceLat=0&deviceLon=0&deviceDNT=%7BTARGETOPT%7D&deviceId=%7BPSID%7D&advertisingId=%7BPSID%7D&us_privacy=1YNY&samsung_app_domain=%7BAPP_DOMAIN%7D&samsung_app_name=%7BAPP_NAME%7D&profileLimit=&profileFloor=&embedPartner=samsung-tvplus",
-      logo: "https://images.pluto.tv/channels/64e501eec630a900088ed0f8/colorLogoPNG.png"
+      logo: "https://images.pluto.tv/channels/64e501eec630a900088ed0f8/thumbnail.jpg"
+    },
+    {
+      id: 117,
+      name: "nickelodeon",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/645951c0e94c38000802d2cb/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Nickelodeon_2023_logo.png"
+    },
+    {
+      id: 102,
+      name: "Tokusatsu",
+      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5ff609de50ab210008025c1b/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
+      logo: "https://images.seeklogo.com/logo-png/47/2/jiban-tokusatsu-logo-png_seeklogo-478538.png"
     },
     {
       id: 129,
       name: "macgayver",
       link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/63eb9dc84e83e70008abea92/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgLYwVooj5XwhcPiY-iu0Iul7QvzPLBbrRTvMSfrA2wADv8Pf-oLfuAyP2yxI6X5zomBk&usqp=CAU"
     },
     {
       id: 112,
       name: "series criminais",
       link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/6474ab5cdc7a760008745008/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://www.tvtime.com/_next/image?url=https%3A%2F%2Fartworks.thetvdb.com%2Fbanners%2Fseries%2F348064%2Fposters%2F5ebc59fd010b7.jpg&w=640&q=75"
     },
     {
       id: 114,
       name: "series sci fi",
       link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/63d2ba2f60bc8f0008981a0e/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRD4U9Ap0cZaLdDtTVjLJsHVdrRjSSugX2jzHN4PSYpKffYjm-n-H3bbqKY2_h2MbDD99Y&usqp=CAU"
     },
     
   ],
   "NOTÍCIAS": [
     {
-      id: 13,
-      name: "BAND NEWS HD",
-      link: "https://hls.hunter.fm/gospel/64.m3u8?shtl=OR99PlKze7mgR_U1AF_NVQZ0.dLFtA%2FSwg6Gi%2Fh77nRQTbBFiELSZm%2BOueXvqQcHVqGs",
-      logo: "https://example.com/placeholder.png"
-    },
-    {
       id: 17,
       name: "BBC",
       link: "https://8mwx.short.gy/CANALOFF/index.m3u8",
-      logo: "https://example.com/placeholder.png"
-    },
-    {
-      id: 18,
-      name: "BLOOMBERG",
-      link: "https://example.com/bloomberg.m3u8",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9k3ptv01t22FykL-FGCVmreWYzLPXRNHcmg&s"
     },
     {
       id: 26,
       name: "CNN BRASIL",
       link: "https://d25usgadhphvwi.cloudfront.net/hls/main.m3u8",
-      logo: "https://example.com/placeholder.png"
-    },
-    {
-      id: 27,
-      name: "CNN ESPANOL",
-      link: "https://stream.ichibantv.com:3764/hybrid/play.m3u8",
-      logo: "https://example.com/placeholder.png"
-    },
-    {
-      id: 28,
-      name: "CNN INTERNATIONAL",
-      link: "https://stream.ichibantv.com:3764/hybrid/play.m3u8",
-      logo: "https://example.com/placeholder.png"
-    },
-    {
-      id: 35,
-      name: "DIGI 24",
-      link: "https://example.com/digi24.m3u8",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg5PspLuS1V8Q2fEsHLKXteg402IGXUqD3eQ&s"
     },
   ],
   ESPORTE: [
@@ -243,19 +213,19 @@ const channels = {
       id: 102,
       name: "Band Sports",
       link: "https://sportscdn.me/bandsports/index.m3u8",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSodXTv1mbD_cghEakWiLZ-QiZrqpR7Bw2H7Q&s"
     },
     {
       id: 109,
       name: "all sports",
       link: "https://5cf4a2c2512a2.streamlock.net/dgrau/dgrau/chunklist.m3u8",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://pbs.twimg.com/profile_images/1212859696383696896/ljdBfeUQ_400x400.jpg"
     },
     {
       id: 110,
       name: "fuel tv",
       link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/6144d088516ea8000739076a/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://seeklogo.com/images/F/fuel-tv-logo-3C3716497D-seeklogo.com.png"
     },
   ],
   FILMES: [
@@ -317,13 +287,13 @@ const channels = {
       id: 104,
       name: "Ficção cientifica",
       link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5fa15ad6367e170007cdd098/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6Q9DakA6Q673G3eEcVOZzm3t-LdwrTArz8w&s"
     },
     {
       id: 126,
       name: "Negócio fechado",
       link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/64ad7394798def00087b2bfe/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://upload.wikimedia.org/wikipedia/en/b/b4/HCP-chicago6.jpg"
     },
     {
       id: 105,
@@ -335,37 +305,31 @@ const channels = {
       id: 106,
       name: "Space today tv",
       link: "https://service.webvideocore.net/CL1olYogIrDWvwqiIKK7eHbBxDyYany25g-L4QOVH5_l5daXY9tfEZPDJS0YHgpW/a_50acwl5q0f0g.m3u8",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGBFexTm6rQhVFqscb2j56RaW2pWwqhKsGXg&s"
     },
     {
       id: 121,
       name: "Acumuladores",
       link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/656e2a4b4261ca00083aa99e/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://img.nbc.com/files/images/2020/3/01/AC_S1-Logo-1920x1080.jpg"
     },
     {
       id: 122,
       name: "Caçadores de ovnis",
       link: "https://cors-anywhere-d1oq.onrender.com/http://stitcher-ipv4.pluto.tv/v1/stitch/embed/hls/channel/656e2a10954b020008ed167c/master.m3u8?deviceType=samsung-tvplus&deviceMake=samsung&deviceModel=samsung&deviceVersion=unknown&appVersion=unknown&deviceLat=0&deviceLon=0&deviceDNT=%7BTARGETOPT%7D&deviceId=%7BPSID%7D&advertisingId=%7BPSID%7D&us_privacy=1YNY&samsung_app_domain=%7BAPP_DOMAIN%7D&samsung_app_name=%7BAPP_NAME%7D&profileLimit=&profileFloor=&embedPartner=samsung-tvplus",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://resizing.flixster.com/rq_mVXfw8xkcTMKO1ROXKj9zOo4=/fit-in/705x460/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p185955_b_v9_au.jpg"
     },
     {
       id: 123,
       name: "Misterios",
       link: "https://cors-anywhere-d1oq.onrender.com/http://stitcher-ipv4.pluto.tv/v1/stitch/embed/hls/channel/656e2a10954b020008ed167c/master.m3u8?deviceType=samsung-tvplus&deviceMake=samsung&deviceModel=samsung&deviceVersion=unknown&appVersion=unknown&deviceLat=0&deviceLon=0&deviceDNT=%7BTARGETOPT%7D&deviceId=%7BPSID%7D&advertisingId=%7BPSID%7D&us_privacy=1YNY&samsung_app_domain=%7BAPP_DOMAIN%7D&samsung_app_name=%7BAPP_NAME%7D&profileLimit=&profileFloor=&embedPartner=samsung-tvplus",
-      logo: "https://example.com/placeholder.png"
-    },
-    {
-      id: 124,
-      name: "Misterios sem solução",
-      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/62b5c5a064163d0007b2efe6/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://images.pluto.tv/channels/5fac52f142044f00078e2a51/featuredImage.jpg"
     },
     {
       id: 125,
       name: "Catfish",
       link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/626c2a3502d84a0007cec817/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://ih1.redbubble.net/image.723342440.0066/ls,13inch,x750-pad,750x1000,f8f8f8.u3.jpg"
     },
   
   ],
@@ -374,37 +338,37 @@ const channels = {
       id: 501,
       name: "TV Globo RJ",
       link: "http://216.230.233.87:80/m3u8/globorj.m3u8",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://w7.pngwing.com/pngs/55/116/png-transparent-rede-globo-globo-tv-international-logo-television-telenovela-l-american-football-balloon-sphere-film-streaming-media-thumbnail.png"
     },
     {
       id: 507,
       name: "Band",
       link: "https://5b7f3c45ab7c2.streamlock.net/arapuan/ngrp:arapuan_all/chunklist.m3u8",
-      logo: "[Base64 Image]" // Imagem em Base64, sem URL direta
+      logo: "https://e7.pngegg.com/pngimages/492/597/png-clipart-brazil-tv-bandeirantes-television-channel-band-television-logo-thumbnail.png" 
     },
     {
       id: 502,
       name: "SBT",
       link: "https://aovivo.maissbt.com/channel_360.m3u8",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://logodownload.org/wp-content/uploads/2017/04/sbt-interior-logo-5.png"
     },
     {
       id: 131,
       name: "sbt sp",
       link: "https://cdn.jmvstream.com/w/LVW-10801/LVW10801_Xvg4R0u57n/chunklist.m3u8",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://cdn.mitvstatic.com/channels/br_sbt-s-o-paulo-hd_m.png"
     },
     {
       id: 503,
       name: "Record",
       link: "https://cdn.jmvstream.com/w/LVW-10842/LVW10842_513N26MDBL/chunklist.m3u8?ManoTV",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://upload.wikimedia.org/wikipedia/pt/1/13/Logotipo_da_Rede_Record.png"
     },
     {
       id: 130,
       name: "Rede tv",
       link: "https://tv02.zas.media:1936/redetvparana/redetvparana/playlist.m3u8",
-      logo: "https://example.com/placeholder.png"
+      logo: "https://e7.pngegg.com/pngimages/927/549/png-clipart-redetv-rondonia-television-channel-sistema-brasileiro-de-televisao-tv-television-text-thumbnail.png"
     },
   ],
   "CANAIS DE RADIO": [
@@ -450,12 +414,6 @@ const channels = {
       id: 101,
       name: "anime e tokusatsu",
       link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/604b79c558393100078faeef/master.m3u8?deviceId=channel&deviceModel=web&deviceVersion=1.0&appVersion=1.0&deviceType=rokuChannel&deviceMake=rokuChannel&deviceDNT=1",
-      logo: "https://imgurUAguc.jpg"
-    },
-    {
-      id: 102,
-      name: "tokusatsu",
-      link: "https://cors-anywhere-d1oq.onrender.com/https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5ff609de50ab210008025c1b/master.m3u8?advertisingId={PSID}&appVersion=unknown&deviceDNT={TARGETOPT}&deviceId={PSID}&deviceLat=0&deviceLon=0&deviceMake=samsung&deviceModel=samsung&deviceType=samsung-tvplus&deviceVersion=unknown",
       logo: "https://imgurUAguc.jpg"
     },
     {
