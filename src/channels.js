@@ -6,12 +6,7 @@ const channels = {
   "LISTA DE FAVORITOS": [], // Inicialmente vazia, o usuário pode adicionar canais aqui
 
   CULTURA: [
-    {
-      id: 601,
-      name: "24H Todo Mundo Odeia o Cris",
-      link: "https://cors-anywhere-d1oq.onrender.com/http://ultrazrv.me:80/21407895/17306527/3920425",
-      logo: "https://imagizer.imageshack.com/v2/320x240q90/923/HUmzYG.png"
-    },{
+   {
       id: 301,
       name: "TV Cultura",
       link: "https://player-tvcultura.stream.uol.com.br/live/tvcultura.m3u8",
