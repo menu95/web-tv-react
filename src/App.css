@@ -1,7 +1,7 @@
 /* App.css */
 
 :root {
-  --highlight-color: #e50914;       /* Vermelho de destaque */
+  --highlight-color: #e50914; /* Vermelho de destaque */
   --overlay-color: rgba(0, 0, 0, 0.65);
   --bg-sidebar: rgba(0, 0, 0, 0.8);
   --bg-content: rgba(0, 0, 0, 0.4);
@@ -17,27 +17,24 @@
 body, .app {
   font-family: var(--font-family);
   height: 100vh;
-  overflow: hidden; /* Garante que não haja scroll desnecessário */
-  background-color: #000; /* Garante um fundo preto inicial */
+  overflow: hidden;
+  background-color: #000;
 }
 
 .app {
   position: relative;
   display: flex;
-  width: 100%; /* Garante que o app ocupa toda a largura */
+  width: 100%;
 }
 
 /* Overlay escura sobre vídeo e menus quando visíveis */
-/* Este overlay é para quando os menus estão ativos, escurecendo o fundo do player */
 .overlay {
   content: "";
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
   background: var(--overlay-color);
-  z-index: 1; /* Garante que está acima do player */
-  /* Se você quiser que este overlay cubra TUDO (sidebar, content, player), aumente o z-index */
-  /* Mas pelo design original, parece que cobre apenas o player quando menus estão abertos */
+  z-index: 1;
 }
 
 /* Sidebar de categorias */
@@ -47,16 +44,16 @@ body, .app {
   background: var(--bg-sidebar);
   color: #fff;
   padding-top: 20px;
-  z-index: 3; /* Garante que está acima do content e player */
+  z-index: 3;
   overflow-y: auto;
-  flex-shrink: 0; /* Impede que a sidebar encolha */
+  flex-shrink: 0;
 }
 
 .category {
   padding: 12px 16px;
   cursor: pointer;
   transition: background 0.2s;
-  user-select: none; /* Evita seleção de texto ao clicar rápido */
+  user-select: none;
 }
 
 .category.active {
@@ -67,18 +64,12 @@ body, .app {
 /* Área de lista de canais */
 .content {
   position: relative;
-  /* A margem esquerda pode ser ajustada dependendo se a sidebar é flutuante ou parte do flex layout */
-  /* Se a sidebar tem largura fixa e é parte do flex, a margem no content não é necessária */
-  /* Se a sidebar é position absolute/fixed, a margem compensa */
-  /* Pelo seu display: flex no .app, parece que sidebar e content são flex items. */
-  /* Removendo margin-left e usando flex: 1 */
-  /* margin-left: 120px; */ /* Remova ou ajuste se usar flex */
-  flex: 1; /* Ocupa o espaço restante */
-  width: calc(100% - 320px); /* Se a sidebar tem 320px e content tem flex: 1, essa largura calc pode não ser necessária ou precisa ser ajustada */
+  flex: 1;
+  width: calc(100% - 320px); /* Reajustado se a sidebar é 320px */
   height: 100%;
   background: var(--bg-content);
   color: #fff;
-  z-index: 2; /* Acima do player, abaixo da sidebar */
+  z-index: 2;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -92,13 +83,13 @@ body, .app {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  flex-shrink: 0; /* Impede que o header encolha */
+  flex-shrink: 0;
 }
 
 .channel-list {
   list-style: none;
-  overflow-y: auto; /* Permite scroll na lista de canais */
-  flex-grow: 1; /* Permite que a lista de canais ocupe o espaço restante no content */
+  overflow-y: auto;
+  flex-grow: 1;
 }
 
 .channel {
@@ -108,10 +99,8 @@ body, .app {
   cursor: pointer;
   border-bottom: 1px solid rgba(255,255,255,0.1);
   transition: background 0.2s;
-  user-select: none; /* Evita seleção de texto */
+  user-select: none;
 }
-
-
 
 .channel.active {
   background: var(--highlight-color);
@@ -122,7 +111,7 @@ body, .app {
   width: 40px;
   font-weight: bold;
   text-align: center;
-  flex-shrink: 0; /* Impede que o ID encolha */
+  flex-shrink: 0;
 }
 
 /* Estilo para o logotipo do canal */
@@ -133,11 +122,11 @@ body, .app {
   margin: 0 10px;
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.1);
-  flex-shrink: 0; /* Impede que o logo encolha */
+  flex-shrink: 0;
 }
 
 .channel-name {
-  flex: 1; /* Permite que o nome do canal ocupe o espaço restante */
+  flex: 1;
   padding-left: 8px;
   white-space: nowrap;
   overflow: hidden;
@@ -146,51 +135,48 @@ body, .app {
 
 /* Player de vídeo em segundo plano */
 .player {
-  position: absolute; /* Posicionado absolutamente para ficar no fundo */
+  position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  z-index: 0; /* Fica no fundo */
+  z-index: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* O player div em si pode receber pointer-events: auto; para capturar cliques (ex: para mostrar menus) */
   pointer-events: auto;
 }
 
 #video-player {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Garante que o vídeo cubra a área sem distorcer */
-  background-color: #000; /* Fundo preto para o elemento vídeo */
-  /* O elemento vídeo em si não deve capturar eventos para que o clique no .player funcione */
-   pointer-events: none;
+  object-fit: cover;
+  background-color: #000;
+  pointer-events: none;
 }
-
 
 /* --- Novas regras para a camada de Carregamento com Mensagem --- */
 
 .loading-overlay {
-  position: absolute; /* Posicionado sobre o player */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.9); /* Fundo preto semi-transparente ou solid black */
   display: flex;
-  flex-direction: column; /* Conteúdo (mensagem, spinner) em coluna */
-  justify-content: center; /* Centraliza verticalmente */
-  align-items: center; /* Centraliza horizontalmente */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   z-index: 1; /* Fica acima do player (z-index: 0) */
   pointer-events: none; /* Permite cliques passarem para o .player div abaixo */
-  color: white; /* Cor do texto */
-  font-size: 1.2em; /* Tamanho da fonte */
-  text-align: center; /* Alinha o texto no centro */
-  padding: 20px; /* Padding para o texto não tocar as bordas */
+  color: white;
+  font-size: 1.2em;
+  text-align: center;
+  padding: 20px;
 }
 
 .loading-message {
     margin-bottom: 20px; /* Espaço abaixo da mensagem se houver um spinner */
-    max-width: 80%; /* Limita a largura da mensagem para não quebrar muito */
+    max-width: 80%;
 }
 
 /* Opcional: Estilos para um spinner */
@@ -215,9 +201,7 @@ body, .app {
 
 
 /* REGRAS AVANÇADAS PARA OCULTAR CONTROLES NATIVOS DE VÍDEO */
-/* Manter estas regras é bom para compatibilidade, embora a overlay seja a principal solução visual */
 
-/* Classe geral para vídeos sem controles */
 .no-controls::-webkit-media-controls,
 .no-controls::-webkit-media-controls-panel,
 .no-controls::-webkit-media-controls-panel-container,
@@ -229,8 +213,6 @@ body, .app {
   visibility: hidden !important;
 }
 
-/* Novas regras para ocultar os controles do player de vídeo */
-/* Regras mais específicas para webkit (Chrome, Safari, novo Edge) */
 video::-webkit-media-controls { display: none !important; }
 video::-webkit-media-controls-enclosure { display: none !important; }
 video::-webkit-media-controls-panel { display: none !important; }
@@ -245,20 +227,11 @@ video::-webkit-media-controls-overflow-button { display: none !important; }
 video::-webkit-media-controls-download-button { display: none !important; }
 video::-webkit-media-controls-toggle-closed-captions-button { display: none !important; }
 
-
-/* Firefox */
 video::-moz-media-controls { display: none !important; }
-/* Controles específicos do Firefox podem precisar de regras adicionais se aparecerem */
-/* video::-moz-range-thumb, video::-moz-range-track { display: none !important; } */
 
-
-/* Microsoft Edge (Legacy) e IE */
 video::-ms-media-controls { display: none !important; }
 video::-ms-media-controls-enclosure { display: none !important; }
-/* video::-ms-fill-lower, video::-ms-fill-upper, video::-ms-thumb, video::-ms-ticks-after, video::-ms-ticks-before, video::-ms-track { display: none !important; } */
 
-
-/* Garantir que nenhum controle apareça ao passar o mouse */
 video:hover::-webkit-media-controls-panel {
   display: none !important;
   pointer-events: none !important;
@@ -266,7 +239,6 @@ video:hover::-webkit-media-controls-panel {
   visibility: hidden !important;
 }
 
-/* Garantir que o vídeo não tenha outline ou borda quando focado/selecionado */
 video,
 video:focus,
 video:active,
@@ -277,23 +249,19 @@ video:hover {
   user-select: none !important;
 }
 
-/* Desabilitar interação direta com o elemento vídeo para evitar controles nativos */
 .player video {
   pointer-events: none;
 }
 
-/* Permitir interação (como o clique para mostrar menus) no container pai (.player) */
 .player {
   pointer-events: auto;
 }
 
-/* Tentar remover qualquer outline padrão do navegador */
 *:focus {
   outline: none !important;
-  box-shadow: none !important; /* Adicionar por precaução */
+  box-shadow: none !important;
 }
 
-/* Ou especificamente para seus itens clicáveis */
 .category:focus,
 .channel:focus {
   outline: none !important;
