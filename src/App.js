@@ -1,6 +1,7 @@
 // App.js
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import "./App.css";
+// Assumindo que o arquivo channels.js existe e exporta um objeto com as categorias e canais
 import channels from "./channels";
 
 // Constantes de categorias fora do componente para manter identidade estável
@@ -32,14 +33,8 @@ const App = () => {
   const inactivityTimerRef = useRef(null);
   const [allChannels, setAllChannels] = useState([]);
 
-  // Estado para controlar a camada de carregamento/espera
+  // Novo estado para controlar a camada de "placeholder" / carregamento
   const [isLoadingOrWaiting, setIsLoadingOrWaiting] = useState(false);
-
-  // Adicionado log para rastrear mudanças no estado de carregamento
-  useEffect(() => {
-      console.log("isLoadingOrWaiting changed to:", isLoadingOrWaiting);
-  }, [isLoadingOrWaiting]);
-
 
   // Preenche TODOS sem repetição
   useEffect(() => {
@@ -67,7 +62,6 @@ const App = () => {
 
   // Mostrar menus novamente (memoizado)
   const showMenus = useCallback(() => {
-    console.log("Showing menus.");
     setShowCategories(true);
     setShowChannels(true);
     setActiveMenu('categories');
@@ -76,11 +70,10 @@ const App = () => {
 
   // Funções de seleção memoizadas para usar em callbacks
   const handleCategorySelect = useCallback((idx) => {
-    console.log("Category selected:", categories[idx]);
     setSelectedCategory(idx);
     setSelectedChannelIndex(null);
-    setSelectedChannel(null);
-    // isLoadingOrWaiting será setado para false via cleanup do useEffect
+    setSelectedChannel(null); // Limpa o canal selecionado ao mudar de categoria
+    setIsLoadingOrWaiting(false); // Garante que o placeholder está oculto ao mudar de categoria
     setShowCategories(true);
     setShowChannels(true);
     setActiveMenu('categories');
@@ -88,10 +81,8 @@ const App = () => {
   }, [resetInactivityTimer]);
 
   const handleChannelSelect = useCallback((channel) => {
-    console.log("Channel selected:", channel);
     setSelectedChannel(channel);
-    // Define como true IMEDIATAMENTE ao selecionar um canal
-    setIsLoadingOrWaiting(true);
+    setIsLoadingOrWaiting(true); // Define como true ao selecionar um canal (inicia o carregamento)
     setShowCategories(false);
     setShowChannels(false);
     resetInactivityTimer();
@@ -99,132 +90,108 @@ const App = () => {
 
   // Monitora atividade do usuário
   useEffect(() => {
-    console.log("Setting up user activity listeners.");
     const activityEvents = ['keydown', 'mousemove', 'mousedown', 'click'];
     const handleUserActivity = () => { resetInactivityTimer(); };
 
     activityEvents.forEach(event => window.addEventListener(event, handleUserActivity));
-    resetInactivityTimer();
+    resetInactivityTimer(); // Inicia o timer ao montar o componente
 
     return () => {
-      console.log("Cleaning up user activity listeners.");
       activityEvents.forEach(event => window.removeEventListener(event, handleUserActivity));
-      if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
+      if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current); // Limpa o timer ao desmontar
     };
-  }, [resetInactivityTimer]);
+  }, [resetInactivityTimer]); // Dependência correta
 
   // Carrega HLS no vídeo e gerencia o estado de carregamento
   useEffect(() => {
     const video = videoRef.current;
-    let hlsInstance = null;
+    let hlsInstance = null; // Variável para armazenar a instância Hls.js
 
-    console.log("useEffect [selectedChannel] triggered. selectedChannel:", selectedChannel);
-
-    // Handlers de eventos do vídeo
     const handlePlaybackStart = () => {
-        console.log("Event 'playing' or 'play' fired. Setting isLoadingOrWaiting(false).");
-        setIsLoadingOrWaiting(false);
+        console.log("Evento 'playing' ou 'play' disparado. Ocultando placeholder.");
+        setIsLoadingOrWaiting(false); // Oculta o placeholder quando o vídeo começa a tocar
     };
 
     const handleWaiting = () => {
-         console.log("Event 'waiting' fired. Setting isLoadingOrWaiting(true).");
-         setIsLoadingOrWaiting(true);
+         console.log("Evento 'waiting' disparado. Mostrando placeholder.");
+         setIsLoadingOrWaiting(true); // Mostra o placeholder se o vídeo parar para bufferizar
     };
 
-    const handleError = (eventOrError) => {
-       console.error("Video playback error:", eventOrError);
-       setIsLoadingOrWaiting(false); // Oculta o placeholder em caso de erro
-       // TODO: Display a user-friendly error message
+    // Função para lidar com erros de reprodução e Hls.js
+    const handleError = (err) => {
+        console.error("Erro na reprodução ou Hls.js:", err);
+        setIsLoadingOrWaiting(false); // Oculta o placeholder em caso de erro
+        // TODO: Implementar lógica para mostrar uma mensagem de erro ao usuário
     };
 
-    // --- Lógica de Carregamento ---
     if (selectedChannel?.link && video) {
-      console.log("Loading video for channel:", selectedChannel.name);
-
+      // Garante que controles nativos estão desativados
       video.controls = false;
+
+      // Configura atributos adicionais para evitar controles
       video.controlsList = "nodownload nofullscreen noremoteplayback";
       video.disablePictureInPicture = true;
       video.disableRemotePlayback = true;
 
-      // Remove listeners antigos antes de adicionar novos (importante para o cleanup funcionar bem)
-      // Embora o cleanup no return já faça isso, ser explícito aqui pode ajudar em alguns casos
-      video.removeEventListener('playing', handlePlaybackStart);
-      video.removeEventListener('play', handlePlaybackStart);
-      video.removeEventListener('waiting', handleWaiting);
-      video.removeEventListener('error', handleError);
-
-      // Adiciona listeners ANTES de setar o src ou attachar Hls
+      // Adiciona listeners para controlar o estado de carregamento/espera
       video.addEventListener('playing', handlePlaybackStart);
       video.addEventListener('play', handlePlaybackStart);
       video.addEventListener('waiting', handleWaiting);
-      video.addEventListener('error', handleError);
+      video.addEventListener('error', handleError); // Adiciona listener para erros do vídeo nativo
+
+      // Opcional: Adicionar listener para 'pause' se quiser que o placeholder apareça ao pausar manualmente
+      // video.addEventListener('pause', () => setIsLoadingOrWaiting(true));
+
 
       if (window.Hls?.isSupported()) {
-        console.log("Hls.js is supported. Attaching Hls.js.");
-        hlsInstance = new window.Hls();
-
-         hlsInstance.on(window.Hls.Events.ERROR, (event, data) => {
-           console.error("Hls.js error event:", event, "data:", data);
-           let error = new Error(`Hls.js Error: ${data.type} - ${data.details}`);
-           handleError(error); // Passa o erro do Hls para o nosso handler geral
-         });
-
+        hlsInstance = new window.Hls(); // Cria a instância
         hlsInstance.loadSource(selectedChannel.link);
         hlsInstance.attachMedia(video);
 
-         hlsInstance.on(window.Hls.Events.MANIFEST_PARSED, () => {
-             console.log("Hls.js MANIFEST_PARSED. Attempting play via autoplay or explicit call.");
-             // Se autoplay estiver no JSX, ele tentará tocar aqui.
-             // Se removeu autoplay:
-             // video.play().catch(handleError);
-         });
+        hlsInstance.on(window.Hls.Events.MANIFEST_PARSED, () => {
+            console.log("Hls.js MANIFEST_PARSED. Tentando play.");
+           video.play().catch(handleError); // Usa a função de erro
+        });
 
+        // Adiciona tratamento de erro do Hls.js
+        hlsInstance.on(window.Hls.Events.ERROR, (event, data) => {
+           console.error("Hls.js error event:", event, "data:", data);
+           // Dependendo do erro, pode ser necessário mostrar uma mensagem de erro ao usuário
+           handleError(new Error(`Hls.js Error: ${data.type} - ${data.details}`)); // Usa a função de erro
+        });
 
       } else {
-        console.log("Hls.js not supported. Using native src.");
+        console.log("Hls.js não suportado. Usando src nativo.");
         video.src = selectedChannel.link;
-        // Se autoplay estiver no JSX, ele tentará tocar aqui.
-        // Se removeu autoplay:
-        // video.play().catch(handleError);
+        video.play().catch(handleError); // Usa a função de erro
       }
-    } else {
-        console.log("selectedChannel is null or link is missing. Clearing video and state.");
-        if(video){
-            video.pause();
-            video.removeAttribute("src");
-            video.load(); // Reseta o player
-             // Garante que os listeners são removidos mesmo que o canal seja null/undefined
-             video.removeEventListener('playing', handlePlaybackStart);
-             video.removeEventListener('play', handlePlaybackStart);
-             video.removeEventListener('waiting', handleWaiting);
-             video.removeEventListener('error', handleError);
-        }
-        setIsLoadingOrWaiting(false);
     }
 
-    // --- Função de Limpeza ---
+    // Cleanup function
     return () => {
-      console.log("Cleaning up video player useEffect.");
-      // Remove os event listeners
       if (video) {
+        video.pause();
+        video.removeAttribute("src");
+        video.load(); // Reseta o player
+        // Remove os event listeners para evitar memory leaks
         video.removeEventListener('playing', handlePlaybackStart);
         video.removeEventListener('play', handlePlaybackStart);
         video.removeEventListener('waiting', handleWaiting);
         video.removeEventListener('error', handleError);
+        // Se adicionou 'pause', remova também:
+        // video.removeEventListener('pause', () => setIsLoadingOrWaiting(true));
       }
-      // Destroi a instância do Hls.js
       if (hlsInstance) {
-          hlsInstance.destroy();
-          hlsInstance = null;
+          hlsInstance.destroy(); // Destroi a instância do Hls.js
       }
-      // Garante que o estado de carregamento é resetado ao desmontar ou mudar de canal
-      // Esta linha é crucial para garantir que a overlay suma quando o componente player não está ativo
-       setIsLoadingOrWaiting(false);
-       console.log("Cleanup complete. isLoadingOrWaiting set to false.");
+      // Certifica-se que o placeholder é mostrado se sair da tela do player
+      // Não, o placeholder deve sumir ao mudar de canal. O handleChannelSelect já seta para true no novo canal.
+      // Se o canal for removido (selectedChannel se torna null), o player some, então o overlay também some.
+      setIsLoadingOrWaiting(false); // Garante que está oculto ao sair da tela do player
     };
-  }, [selectedChannel]); // Dependência: este efeito roda sempre que selectedChannel muda
+  }, [selectedChannel]); // Dependency on selectedChannel
 
-  // Desativar controles quando o mouse se movimenta sobre o vídeo (manter)
+  // Desativar controles quando o mouse se movimenta sobre o vídeo (manter, parece útil)
   const handleMouseMove = useCallback(() => {
     resetInactivityTimer();
     if (videoRef.current) {
@@ -232,37 +199,27 @@ const App = () => {
     }
   }, [resetInactivityTimer]);
 
-  // Hook de teclado (manter e revisar)
+  // Hook de teclado (manter, parece bem implementado)
   const handleKeyDown = useCallback((e) => {
-    resetInactivityTimer();
+    resetInactivityTimer(); // Reseta o timer de inatividade em qualquer tecla
     const channelsForCategory =
       selectedCategory === 0
         ? allChannels
         : channels[categories[selectedCategory]] || [];
 
-    // Se menus ocultos (tela cheia com player)
+    // Se menus ocultos
     if (!showCategories && !showChannels) {
       if (e.key === 'Enter' || e.key === 'Escape') {
-        e.preventDefault();
-        showMenus();
+        e.preventDefault(); // Previne o comportamento padrão da tecla
+        showMenus(); // Mostra os menus novamente
       }
-       if (e.key === ' ') { // Play/Pause com espaço
-           e.preventDefault();
-           if (videoRef.current) {
-               if (videoRef.current.paused) {
-                   videoRef.current.play().catch(console.error);
-               } else {
-                   videoRef.current.pause();
-               }
-           }
-       }
-      return;
+      return; // Sai da função pois os menus estão ocultos
     }
 
     // Se menus visíveis
     switch (e.key) {
       case 'ArrowUp':
-        e.preventDefault();
+        e.preventDefault(); // Previne scroll da página
         if (activeMenu === 'categories') {
           setSelectedCategory(prev => Math.max(0, prev - 1));
         } else if (activeMenu === 'channels') {
@@ -270,7 +227,7 @@ const App = () => {
         }
         break;
       case 'ArrowDown':
-         e.preventDefault();
+         e.preventDefault(); // Previne scroll da página
         if (activeMenu === 'categories') {
           setSelectedCategory(prev => Math.min(categories.length - 1, prev + 1));
         } else if (activeMenu === 'channels') {
@@ -278,26 +235,29 @@ const App = () => {
         }
         break;
       case 'ArrowRight':
-         e.preventDefault();
+         e.preventDefault(); // Previne scroll da página
         if (activeMenu === 'categories' && channelsForCategory.length > 0) {
           setActiveMenu('channels');
-          setSelectedChannelIndex(0);
+          setSelectedChannelIndex(0); // Seleciona o primeiro canal ao entrar na lista
         }
         break;
       case 'ArrowLeft':
-         e.preventDefault();
+         e.preventDefault(); // Previne scroll da página
         if (activeMenu === 'channels') {
           setActiveMenu('categories');
-          setSelectedChannelIndex(null);
+          setSelectedChannelIndex(null); // Desseleciona o canal ao voltar para categorias
         }
         break;
       case 'Enter':
-        e.preventDefault();
+        e.preventDefault(); // Previne o comportamento padrão (ex: submit de form)
         if (activeMenu === 'channels' && selectedChannelIndex !== null) {
+           // Verifica se há um canal válido selecionado
           if (channelsForCategory[selectedChannelIndex]) {
              handleChannelSelect(channelsForCategory[selectedChannelIndex]);
           }
         } else if (activeMenu === 'categories') {
+            // Opcional: Tratar Enter na categoria se quiser algum comportamento
+            // No seu caso, a seleção da categoria já é feita com ArrowDown/Up e Right para entrar nos canais
              if (channelsForCategory.length > 0) {
                  setActiveMenu('channels');
                  setSelectedChannelIndex(0);
@@ -305,14 +265,21 @@ const App = () => {
         }
         break;
       case 'Escape':
-         e.preventDefault();
+         e.preventDefault(); // Previne o comportamento padrão (ex: sair do fullscreen)
         if (selectedChannel) {
+          // Se um canal está tocando, Escape volta para a lista de canais/categorias
           setSelectedChannel(null);
-          // isLoadingOrWaiting já é setado para false na limpeza do useEffect
-          showMenus();
+          setIsLoadingOrWaiting(false); // Garante que o placeholder não fique visível ao sair do player
+          showMenus(); // Mostra os menus novamente
+        } else {
+           // Se já está na tela de menus, Escape pode fechar algo ou voltar para uma tela anterior
+           // No seu design, Escape mostra os menus se estiverem ocultos, o que já é tratado no início da função.
+           // Se os menus estão visíveis e não há canal tocando, Escape pode não fazer nada ou ter outra função.
+           // Deixar como está no início da função já cobre o caso de menus ocultos.
         }
         break;
       default:
+        // Para outras teclas, não faz nada
         break;
     }
   }, [
@@ -323,24 +290,19 @@ const App = () => {
     showChannels,
     activeMenu,
     selectedChannelIndex,
-    selectedChannel,
-    showMenus,
-    handleChannelSelect
+    selectedChannel, // Adicionado dependência
+    showMenus, // Adicionado dependência
+    handleChannelSelect // Adicionado dependência
   ]);
 
   // Registra listener de teclado
   useEffect(() => {
-    console.log("Setting up keydown listener.");
     window.addEventListener('keydown', handleKeyDown);
-    return () => {
-        console.log("Cleaning up keydown listener.");
-        window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [handleKeyDown]);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]); // Dependência correta
 
   // Desabilita controles de vídeo usando JavaScript no mousemove (manter)
    useEffect(() => {
-     console.log("Setting up mousemove listener for controls.");
      const preventControls = (e) => {
        if (videoRef.current) {
          videoRef.current.controls = false;
@@ -350,7 +312,6 @@ const App = () => {
      document.addEventListener('mousemove', preventControls);
 
      return () => {
-       console.log("Cleaning up mousemove listener for controls.");
        document.removeEventListener('mousemove', preventControls);
      };
    }, []);
@@ -396,7 +357,7 @@ const App = () => {
                 onClick={() => {
                   setSelectedChannelIndex(idx);
                   setActiveMenu('channels');
-                  handleChannelSelect(chan);
+                  handleChannelSelect(chan); // Chama a função de seleção de canal
                 }}
               >
                 <span className="channel-id">{chan.id}</span>
@@ -415,24 +376,22 @@ const App = () => {
             ref={videoRef}
             id="video-player"
             autoPlay
-            muted={false}
-            playsInline
+            muted={false} // Cuidado com autoplay e som ligado, navegadores podem bloquear
+            playsInline // Importante para iOS e alguns Androids para tocar inline e não fullscreen
             disablePictureInPicture
             controlsList="nodownload nofullscreen noremoteplayback"
-            // Adiciona a classe 'hidden' quando isLoadingOrWaiting é true para escondê-lo
-            className={`no-controls ${isLoadingOrWaiting ? 'hidden' : ''}`}
-            // Event listeners agora estão no useEffect
+            className="no-controls"
+            // Os listeners de 'play', 'playing', 'waiting', 'error' foram movidos para o useEffect
           />
           {/* Camada de placeholder/carregamento com mensagem */}
           {isLoadingOrWaiting && (
             <div className="loading-overlay">
+              {/* Adicione a mensagem aqui */}
               <div className="loading-message">
                 Carregando canal... Por favor, aguarde alguns segundos.
                  {/* Opcional: Adicione um spinner abaixo da mensagem */}
                  {/* <div className="spinner"></div> */}
               </div>
-              {/* Opcional: Adicionar aqui um elemento para exibir mensagens de erro */}
-              {/* {errorMessage && <div className="error-message">{errorMessage}</div>} */}
             </div>
           )}
         </div>
