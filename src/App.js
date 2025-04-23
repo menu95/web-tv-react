@@ -107,13 +107,11 @@ const App = () => {
     const video = videoRef.current;
     let hlsInstance = null; // Variável para armazenar a instância Hls.js
 
-    const handlePlaybackStart = () => {
-        console.log("Evento 'playing' ou 'play' disparado. Ocultando placeholder.");
-        // Adiciona um pequeno atraso antes de ocultar o overlay para garantir que o vídeo esteja realmente exibindo conteúdo
-        setTimeout(() => {
-            setIsLoadingOrWaiting(false); // Oculta o placeholder quando o vídeo começa a tocar
-        }, 300);
-    };
+  const handlePlaybackStart = () => {
+        console.log("Evento 'playing' ou 'play' disparado. Ocultando placeholder.");
+        // Remove o setTimeout que fazia o overlay sumir rápido demais
+        setIsLoadingOrWaiting(false); // <--- Chamado diretamente, sem setTimeout
+    };
 
     const handleWaiting = () => {
          console.log("Evento 'waiting' disparado. Mostrando placeholder.");
