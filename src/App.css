@@ -18,7 +18,7 @@ body, .app {
   font-family: var(--font-family);
   height: 100vh;
   overflow: hidden;
-  background-color: #000;
+  background-color: #000; /* Garante um fundo preto inicial e quando o player não está visível */
 }
 
 .app {
@@ -34,7 +34,7 @@ body, .app {
   top: 0; left: 0;
   width: 100%; height: 100%;
   background: var(--overlay-color);
-  z-index: 1;
+  z-index: 1; /* Garante que está acima do player */
 }
 
 /* Sidebar de categorias */
@@ -44,7 +44,7 @@ body, .app {
   background: var(--bg-sidebar);
   color: #fff;
   padding-top: 20px;
-  z-index: 3;
+  z-index: 3; /* Garante que está acima do content, overlay e player */
   overflow-y: auto;
   flex-shrink: 0;
 }
@@ -65,11 +65,11 @@ body, .app {
 .content {
   position: relative;
   flex: 1;
-  width: calc(100% - 320px); /* Reajustado se a sidebar é 320px */
+  /* width: calc(100% - 320px); Removido, flex: 1 já faz ocupar o espaço restante */
   height: 100%;
   background: var(--bg-content);
   color: #fff;
-  z-index: 2;
+  z-index: 2; /* Acima do player e overlay, abaixo da sidebar */
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -138,25 +138,35 @@ body, .app {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  z-index: 0;
+  z-index: 0; /* Fica no fundo */
   display: flex;
   justify-content: center;
   align-items: center;
-  pointer-events: auto;
+  pointer-events: auto; /* Permite cliques para capturar eventos (ex: showMenus) */
 }
 
 #video-player {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background-color: #000;
-  pointer-events: none;
+  background-color: #000; /* Fundo preto para o elemento vídeo */
+  pointer-events: none; /* O vídeo em si não captura eventos de mouse */
+  /* Opcional: Adicionar transição para um fade suave ao esconder/mostrar */
+  transition: opacity 0.3s ease-in-out;
 }
 
-/* --- Novas regras para a camada de Carregamento com Mensagem --- */
+/* Nova regra: Esconde o elemento de vídeo quando a classe 'hidden' está presente */
+#video-player.hidden {
+  opacity: 0;
+  /* Se preferir remover completamente do fluxo e layout, use display: none; */
+  /* display: none; */
+}
+
+
+/* --- Regras para a camada de Carregamento com Mensagem --- */
 
 .loading-overlay {
-  position: absolute;
+  position: absolute; /* Posicionado sobre o player */
   top: 0;
   left: 0;
   width: 100%;
@@ -164,8 +174,8 @@ body, .app {
   background-color: rgba(0, 0, 0, 0.9); /* Fundo preto semi-transparente ou solid black */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* Centraliza verticalmente */
+  align-items: center; /* Centraliza horizontalmente */
   z-index: 1; /* Fica acima do player (z-index: 0) */
   pointer-events: none; /* Permite cliques passarem para o .player div abaixo */
   color: white;
@@ -176,7 +186,7 @@ body, .app {
 
 .loading-message {
     margin-bottom: 20px; /* Espaço abaixo da mensagem se houver um spinner */
-    max-width: 80%;
+    max-width: 80%; /* Limita a largura da mensagem para evitar quebras excessivas */
 }
 
 /* Opcional: Estilos para um spinner */
@@ -197,11 +207,23 @@ body, .app {
 }
 */
 
-/* --- Fim das Novas regras --- */
+/* Opcional: Estilos para mensagem de erro se você adicionar um elemento no HTML */
+/*
+.error-message {
+    margin-top: 20px;
+    color: red;
+    font-size: 1em;
+    text-align: center;
+}
+*/
+
+/* --- Fim das Regras de Carregamento --- */
 
 
 /* REGRAS AVANÇADAS PARA OCULTAR CONTROLES NATIVOS DE VÍDEO */
+/* Manter estas regras é bom para compatibilidade, embora a overlay seja a principal solução visual */
 
+/* Classe geral para vídeos sem controles */
 .no-controls::-webkit-media-controls,
 .no-controls::-webkit-media-controls-panel,
 .no-controls::-webkit-media-controls-panel-container,
@@ -213,6 +235,7 @@ body, .app {
   visibility: hidden !important;
 }
 
+/* Regras mais específicas para webkit (Chrome, Safari, novo Edge) */
 video::-webkit-media-controls { display: none !important; }
 video::-webkit-media-controls-enclosure { display: none !important; }
 video::-webkit-media-controls-panel { display: none !important; }
@@ -227,11 +250,17 @@ video::-webkit-media-controls-overflow-button { display: none !important; }
 video::-webkit-media-controls-download-button { display: none !important; }
 video::-webkit-media-controls-toggle-closed-captions-button { display: none !important; }
 
+
+/* Firefox */
 video::-moz-media-controls { display: none !important; }
 
+
+/* Microsoft Edge (Legacy) e IE */
 video::-ms-media-controls { display: none !important; }
 video::-ms-media-controls-enclosure { display: none !important; }
 
+
+/* Garantir que nenhum controle apareça ao passar o mouse */
 video:hover::-webkit-media-controls-panel {
   display: none !important;
   pointer-events: none !important;
@@ -239,6 +268,7 @@ video:hover::-webkit-media-controls-panel {
   visibility: hidden !important;
 }
 
+/* Garantir que o vídeo não tenha outline ou borda quando focado/selecionado */
 video,
 video:focus,
 video:active,
@@ -249,19 +279,23 @@ video:hover {
   user-select: none !important;
 }
 
+/* Desabilitar interação direta com o elemento vídeo para evitar controles nativos */
 .player video {
   pointer-events: none;
 }
 
+/* Permitir interação (como o clique para mostrar menus) no container pai (.player) */
 .player {
   pointer-events: auto;
 }
 
+/* Tentar remover qualquer outline padrão do navegador */
 *:focus {
   outline: none !important;
   box-shadow: none !important;
 }
 
+/* Ou especificamente para seus itens clicáveis */
 .category:focus,
 .channel:focus {
   outline: none !important;
