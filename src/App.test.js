@@ -1,8 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders categories and channels', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const categoryElements = screen.getAllByText(/TODOS/i);
+  expect(categoryElements.length).toBeGreaterThan(0);
+
+  const jetixElement = screen.getAllByText(/Jetix/i);
+  expect(jetixElement.length).toBeGreaterThan(0);
+
+  const disneyElement = screen.getAllByText(/Disney Channel/i);
+  expect(disneyElement.length).toBeGreaterThan(0);
 });
