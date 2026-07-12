@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Biel TV</string>
+    <string name="title_activity_main">Biel TV</string>
+    <string name="package_name">com.bieltv.app</string>
+    <string name="custom_url_scheme">com.bieltv.app</string>
+</resources>
