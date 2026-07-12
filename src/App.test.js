@@ -8,4 +8,7 @@ test('renders categories and channels', () => {
 
   const jetixElement = screen.getAllByText(/Jetix/i);
   expect(jetixElement.length).toBeGreaterThan(0);
+
+  const disneyElement = screen.getAllByText(/Disney Channel/i);
+  expect(disneyElement.length).toBeGreaterThan(0);
 });

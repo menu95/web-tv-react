@@ -113,6 +113,12 @@ const channels = {
       logo: "https://upload.wikimedia.org/wikipedia/commons/8/80/Cartoon_Network_2010_logo.svg"
     },
     {
+      id: 703,
+      name: "Disney Channel",
+      link: "https://biel-tv-stream.biel-cesa95.workers.dev/live/disney_channel",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/1/1f/2017_Disney_Channel_logo.svg"
+    },
+    {
       id: 601,
       name: "geek dot.",
       link: "https://stream.ichibantv.com:3764/hybrid/play.m3u8",
@@ -451,6 +457,12 @@ const channels = {
       name: "Cartoon Network",
       link: "https://biel-tv-stream.biel-cesa95.workers.dev/live/cartoon_network",
       logo: "https://upload.wikimedia.org/wikipedia/commons/8/80/Cartoon_Network_2010_logo.svg"
+    },
+    {
+      id: 703,
+      name: "Disney Channel",
+      link: "https://biel-tv-stream.biel-cesa95.workers.dev/live/disney_channel",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/1/1f/2017_Disney_Channel_logo.svg"
     },
     {
       id: 101,
