@@ -101,6 +101,18 @@ const channels = {
   ],
   DESENHOS: [
     {
+      id: 701,
+      name: "Jetix",
+      link: "https://biel-tv-stream.biel-cesa95.workers.dev/live/jetix",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/1/14/Jetix_logo.png"
+    },
+    {
+      id: 702,
+      name: "Cartoon Network",
+      link: "https://biel-tv-stream.biel-cesa95.workers.dev/live/cartoon_network",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/8/80/Cartoon_Network_2010_logo.svg"
+    },
+    {
       id: 601,
       name: "geek dot.",
       link: "https://stream.ichibantv.com:3764/hybrid/play.m3u8",
@@ -428,6 +440,18 @@ const channels = {
     },
   ],
   "ADICIONADOS RECENTEMENTE": [
+    {
+      id: 701,
+      name: "Jetix",
+      link: "https://biel-tv-stream.biel-cesa95.workers.dev/live/jetix",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/1/14/Jetix_logo.png"
+    },
+    {
+      id: 702,
+      name: "Cartoon Network",
+      link: "https://biel-tv-stream.biel-cesa95.workers.dev/live/cartoon_network",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/8/80/Cartoon_Network_2010_logo.svg"
+    },
     {
       id: 101,
       name: "anime e tokusatsu",
